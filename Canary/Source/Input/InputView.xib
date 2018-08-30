@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InputViewController" customModule="Canary" customModuleProvider="target">
             <connections>
+                <outlet property="closeButton" destination="Ims-cI-cWb" id="jag-gT-35l"/>
                 <outlet property="promptLabel" destination="ksD-d9-Uax" id="KRL-q7-Vd9"/>
                 <outlet property="textView" destination="QI6-5p-Lwa" id="yWf-4M-eGq"/>
                 <outlet property="view" destination="iN0-l3-epB" id="3lG-Ol-w2Y"/>
@@ -34,9 +35,13 @@
                     <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="23"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ims-cI-cWb">
-                    <rect key="frame" x="329" y="31" width="30" height="30"/>
-                    <state key="normal" title="Add"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ims-cI-cWb">
+                    <rect key="frame" x="315" y="36" width="44" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="44" id="3c4-De-ND0"/>
+                        <constraint firstAttribute="height" constant="44" id="n6c-zs-ZO5"/>
+                    </constraints>
+                    <state key="normal" image="baseline_close_black_36pt"/>
                     <connections>
                         <action selector="tappedDone:" destination="-1" eventType="touchUpInside" id="4ha-eS-biX"/>
                     </connections>
@@ -46,7 +51,7 @@
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Ims-cI-cWb" secondAttribute="trailing" constant="16" id="1Le-si-T3e"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="QI6-5p-Lwa" secondAttribute="bottom" constant="32" id="1Mu-VP-hWE"/>
-                <constraint firstItem="Ims-cI-cWb" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="11" id="FWs-VU-l8K"/>
+                <constraint firstItem="Ims-cI-cWb" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="16" id="FWs-VU-l8K"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="QI6-5p-Lwa" secondAttribute="trailing" constant="32" id="Xc9-67-Wah"/>
                 <constraint firstItem="ksD-d9-Uax" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="f4J-Uv-dom"/>
                 <constraint firstItem="QI6-5p-Lwa" firstAttribute="top" secondItem="ksD-d9-Uax" secondAttribute="bottom" constant="33" id="h9A-RD-h6i"/>
@@ -56,4 +61,7 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
         </view>
     </objects>
+    <resources>
+        <image name="baseline_close_black_36pt" width="36" height="36"/>
+    </resources>
 </document>

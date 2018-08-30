@@ -1,10 +1,20 @@
 import UIKit
 import RealmSwift
 
-class InputViewController: UIViewController {
+class InputViewController: UIViewController, UITextViewDelegate {
+    
+    private let checkImage = #imageLiteral(resourceName: "baseline_check_black_36pt")
+    private let crossImage = #imageLiteral(resourceName: "baseline_close_black_36pt")
+    private let characterLimit = 50
     
     @IBOutlet weak private var promptLabel: UILabel!
     @IBOutlet weak private var textView: UITextView!
+    @IBOutlet weak private var closeButton: UIButton!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        textView.delegate = self
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -36,5 +46,17 @@ class InputViewController: UIViewController {
             realm.add(thought)
         }
         dismiss(animated: true, completion: nil)
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
+        
+        if textView.text.isEmpty && !newText.isEmpty {
+            closeButton.setImage(checkImage, for: .normal)
+        } else if !textView.text.isEmpty && newText.isEmpty {
+            closeButton.setImage(crossImage, for: .normal)
+        }
+        
+        return newText.count <= characterLimit
     }
 }
