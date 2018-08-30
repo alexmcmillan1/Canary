@@ -1,0 +1,450 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		539A137ED8B260307F631712 /* Pods_Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A59E91F1E1616AC26096F2A9 /* Pods_Canary.framework */; };
+		FA1500C62135C5980000E491 /* Thought.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1500C52135C5980000E491 /* Thought.swift */; };
+		FA1500C82135D3ED0000E491 /* ThoughtsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1500C72135D3ED0000E491 /* ThoughtsViewController.swift */; };
+		FA1500CF2135E90B0000E491 /* ThoughtTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1500CD2135E90B0000E491 /* ThoughtTableViewCell.swift */; };
+		FA1500D02135E90B0000E491 /* ThoughtTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA1500CE2135E90B0000E491 /* ThoughtTableViewCell.xib */; };
+		FAB8747221332D31004A0773 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB8747121332D31004A0773 /* AppDelegate.swift */; };
+		FAB8747921332D35004A0773 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAB8747821332D35004A0773 /* Assets.xcassets */; };
+		FAB8747C21332D35004A0773 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAB8747A21332D35004A0773 /* LaunchScreen.storyboard */; };
+		FAB8748521332E61004A0773 /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB8748421332E61004A0773 /* InputViewController.swift */; };
+		FAB8748721332E87004A0773 /* InputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAB8748621332E87004A0773 /* InputView.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		5C66E27C16E64F6C5DECC5B3 /* Pods-Canary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Canary.release.xcconfig"; path = "Pods/Target Support Files/Pods-Canary/Pods-Canary.release.xcconfig"; sourceTree = "<group>"; };
+		A59E91F1E1616AC26096F2A9 /* Pods_Canary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Canary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBB6123A1F8362367E33BFE8 /* Pods-Canary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Canary.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Canary/Pods-Canary.debug.xcconfig"; sourceTree = "<group>"; };
+		FA1500C52135C5980000E491 /* Thought.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thought.swift; sourceTree = "<group>"; };
+		FA1500C72135D3ED0000E491 /* ThoughtsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtsViewController.swift; sourceTree = "<group>"; };
+		FA1500CD2135E90B0000E491 /* ThoughtTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtTableViewCell.swift; sourceTree = "<group>"; };
+		FA1500CE2135E90B0000E491 /* ThoughtTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThoughtTableViewCell.xib; sourceTree = "<group>"; };
+		FAB8746E21332D31004A0773 /* Canary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Canary.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAB8747121332D31004A0773 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FAB8747821332D35004A0773 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FAB8747B21332D35004A0773 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FAB8747D21332D35004A0773 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAB8748421332E61004A0773 /* InputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
+		FAB8748621332E87004A0773 /* InputView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InputView.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FAB8746B21332D31004A0773 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				539A137ED8B260307F631712 /* Pods_Canary.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6D7F352EC475024E322DA34D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A59E91F1E1616AC26096F2A9 /* Pods_Canary.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8C70C93A6C6E4D8DCEAAA50E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DBB6123A1F8362367E33BFE8 /* Pods-Canary.debug.xcconfig */,
+				5C66E27C16E64F6C5DECC5B3 /* Pods-Canary.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		FAA90225213752B0001A1CB1 /* Input */ = {
+			isa = PBXGroup;
+			children = (
+				FAB8748421332E61004A0773 /* InputViewController.swift */,
+				FAB8748621332E87004A0773 /* InputView.xib */,
+			);
+			path = Input;
+			sourceTree = "<group>";
+		};
+		FAA90226213752BF001A1CB1 /* ListView */ = {
+			isa = PBXGroup;
+			children = (
+				FA1500C72135D3ED0000E491 /* ThoughtsViewController.swift */,
+				FA1500CD2135E90B0000E491 /* ThoughtTableViewCell.swift */,
+				FA1500CE2135E90B0000E491 /* ThoughtTableViewCell.xib */,
+			);
+			path = ListView;
+			sourceTree = "<group>";
+		};
+		FAA90227213752DD001A1CB1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FA1500C52135C5980000E491 /* Thought.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		FAB8746521332D31004A0773 = {
+			isa = PBXGroup;
+			children = (
+				FAB8747021332D31004A0773 /* Canary */,
+				FAB8746F21332D31004A0773 /* Products */,
+				8C70C93A6C6E4D8DCEAAA50E /* Pods */,
+				6D7F352EC475024E322DA34D /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		FAB8746F21332D31004A0773 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FAB8746E21332D31004A0773 /* Canary.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FAB8747021332D31004A0773 /* Canary */ = {
+			isa = PBXGroup;
+			children = (
+				FAB8748321332E2E004A0773 /* Source */,
+				FAB8747121332D31004A0773 /* AppDelegate.swift */,
+				FAB8747821332D35004A0773 /* Assets.xcassets */,
+				FAB8747A21332D35004A0773 /* LaunchScreen.storyboard */,
+				FAB8747D21332D35004A0773 /* Info.plist */,
+			);
+			path = Canary;
+			sourceTree = "<group>";
+		};
+		FAB8748321332E2E004A0773 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				FAA90225213752B0001A1CB1 /* Input */,
+				FAA90226213752BF001A1CB1 /* ListView */,
+				FAA90227213752DD001A1CB1 /* Models */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FAB8746D21332D31004A0773 /* Canary */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FAB8748021332D35004A0773 /* Build configuration list for PBXNativeTarget "Canary" */;
+			buildPhases = (
+				DFACFBDDF36848A5FF236DC1 /* [CP] Check Pods Manifest.lock */,
+				FAB8746A21332D31004A0773 /* Sources */,
+				FAB8746B21332D31004A0773 /* Frameworks */,
+				FAB8746C21332D31004A0773 /* Resources */,
+				50599E61E597805A55E420BC /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Canary;
+			productName = Canary;
+			productReference = FAB8746E21332D31004A0773 /* Canary.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FAB8746621332D31004A0773 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0940;
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = "Alex McMillan";
+				TargetAttributes = {
+					FAB8746D21332D31004A0773 = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+				};
+			};
+			buildConfigurationList = FAB8746921332D31004A0773 /* Build configuration list for PBXProject "Canary" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FAB8746521332D31004A0773;
+			productRefGroup = FAB8746F21332D31004A0773 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FAB8746D21332D31004A0773 /* Canary */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FAB8746C21332D31004A0773 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAB8747C21332D35004A0773 /* LaunchScreen.storyboard in Resources */,
+				FAB8747921332D35004A0773 /* Assets.xcassets in Resources */,
+				FAB8748721332E87004A0773 /* InputView.xib in Resources */,
+				FA1500D02135E90B0000E491 /* ThoughtTableViewCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		50599E61E597805A55E420BC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Canary/Pods-Canary-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Canary/Pods-Canary-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DFACFBDDF36848A5FF236DC1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Canary-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FAB8746A21332D31004A0773 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA1500C82135D3ED0000E491 /* ThoughtsViewController.swift in Sources */,
+				FA1500C62135C5980000E491 /* Thought.swift in Sources */,
+				FA1500CF2135E90B0000E491 /* ThoughtTableViewCell.swift in Sources */,
+				FAB8747221332D31004A0773 /* AppDelegate.swift in Sources */,
+				FAB8748521332E61004A0773 /* InputViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		FAB8747A21332D35004A0773 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FAB8747B21332D35004A0773 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FAB8747E21332D35004A0773 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FAB8747F21332D35004A0773 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FAB8748121332D35004A0773 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DBB6123A1F8362367E33BFE8 /* Pods-Canary.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B9NFATBJW3;
+				INFOPLIST_FILE = Canary/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = co.irdm.Canary;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		FAB8748221332D35004A0773 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5C66E27C16E64F6C5DECC5B3 /* Pods-Canary.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B9NFATBJW3;
+				INFOPLIST_FILE = Canary/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = co.irdm.Canary;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FAB8746921332D31004A0773 /* Build configuration list for PBXProject "Canary" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAB8747E21332D35004A0773 /* Debug */,
+				FAB8747F21332D35004A0773 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FAB8748021332D35004A0773 /* Build configuration list for PBXNativeTarget "Canary" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAB8748121332D35004A0773 /* Debug */,
+				FAB8748221332D35004A0773 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FAB8746621332D31004A0773 /* Project object */;
+}
