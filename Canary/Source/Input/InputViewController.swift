@@ -42,7 +42,7 @@ class InputViewController: UIViewController, UITextViewDelegate {
     @IBAction private func tappedDone(_ sender: Any) {
         let realm = try! Realm()
         try! realm.write {
-            let thought = Thought.withContent(textView.text)
+            let thought = Thought.create(textView.text)
             realm.add(thought)
         }
         dismiss(animated: true, completion: nil)
