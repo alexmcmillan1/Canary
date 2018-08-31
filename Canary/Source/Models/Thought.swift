@@ -10,10 +10,10 @@ class Thought: Object {
         return "id"
     }
     
-    static func create(_ content: String? = "") -> Thought {
+    static func create(_ title: String? = "") -> Thought {
         let temp = Thought()
         temp.id = UUID().uuidString
-        temp.content = content!
+        temp.title = title!
         return temp
     }
 }

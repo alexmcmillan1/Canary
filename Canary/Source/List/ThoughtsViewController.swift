@@ -47,7 +47,7 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ThoughtTableViewCell.reuseIdentifier, for: indexPath) as? ThoughtTableViewCell else {
             fatalError()
         }
-        cell.mainLabel.text = items[indexPath.row].content
+        cell.mainLabel.text = items[indexPath.row].title
         return cell
     }
     
@@ -64,6 +64,12 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
         }
         
         return [delete]
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let viewController = EditViewController()
+        viewController.setup(items[indexPath.row])
+        present(viewController, animated: true, completion: nil)
     }
     
     @objc private func tappedAdd() {

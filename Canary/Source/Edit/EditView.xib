@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditViewController" customModule="Canary" customModuleProvider="target">
+            <connections>
+                <outlet property="textView" destination="nDE-J0-0yV" id="CLs-26-42B"/>
+                <outlet property="titleLabel" destination="BYF-WL-d5N" id="LrA-3U-vC9"/>
+                <outlet property="view" destination="iN0-l3-epB" id="TWG-s6-rsK"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BYF-WL-d5N">
+                    <rect key="frame" x="16" y="36" width="283" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Body" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nDE-J0-0yV">
+                    <rect key="frame" x="16" y="73" width="343" height="578"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ygz-h8-2oZ">
+                    <rect key="frame" x="315" y="36" width="44" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="DCv-1T-aun"/>
+                        <constraint firstAttribute="width" constant="44" id="Eql-ws-JiL"/>
+                    </constraints>
+                    <state key="normal" image="baseline_check_black_36pt"/>
+                    <connections>
+                        <action selector="tappedClose:" destination="-1" eventType="touchUpInside" id="3Qc-dq-pnF"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.96634935992104665" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="BYF-WL-d5N" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="558-Bf-GBG"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Ygz-h8-2oZ" secondAttribute="trailing" constant="16" id="5Ij-uk-ylj"/>
+                <constraint firstItem="Ygz-h8-2oZ" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="16" id="AF0-eJ-u7G"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="nDE-J0-0yV" secondAttribute="bottom" constant="16" id="Wcz-XG-oAF"/>
+                <constraint firstItem="Ygz-h8-2oZ" firstAttribute="leading" secondItem="BYF-WL-d5N" secondAttribute="trailing" constant="16" id="Wxb-5U-pXG"/>
+                <constraint firstItem="nDE-J0-0yV" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="fYd-SD-5Qz"/>
+                <constraint firstItem="nDE-J0-0yV" firstAttribute="top" secondItem="BYF-WL-d5N" secondAttribute="bottom" constant="16" id="gWO-di-ekH"/>
+                <constraint firstItem="BYF-WL-d5N" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="16" id="lVo-Mj-FaP"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="nDE-J0-0yV" secondAttribute="trailing" constant="16" id="xWA-Qz-ZHv"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="baseline_check_black_36pt" width="36" height="36"/>
+    </resources>
+</document>
