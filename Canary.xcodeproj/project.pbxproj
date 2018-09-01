@@ -14,6 +14,7 @@
 		FA1500D02135E90B0000E491 /* ThoughtTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA1500CE2135E90B0000E491 /* ThoughtTableViewCell.xib */; };
 		FA5B26A52139CC8F006043D4 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B26A42139CC8F006043D4 /* EditViewController.swift */; };
 		FA5B26A92139CCAD006043D4 /* EditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA5B26A82139CCAD006043D4 /* EditView.xib */; };
+		FA77BB37213B3AA000C8DEAC /* EmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA77BB36213B3AA000C8DEAC /* EmptyView.xib */; };
 		FAB8747221332D31004A0773 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB8747121332D31004A0773 /* AppDelegate.swift */; };
 		FAB8747921332D35004A0773 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAB8747821332D35004A0773 /* Assets.xcassets */; };
 		FAB8747C21332D35004A0773 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAB8747A21332D35004A0773 /* LaunchScreen.storyboard */; };
@@ -31,6 +32,7 @@
 		FA1500CE2135E90B0000E491 /* ThoughtTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThoughtTableViewCell.xib; sourceTree = "<group>"; };
 		FA5B26A42139CC8F006043D4 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		FA5B26A82139CCAD006043D4 /* EditView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditView.xib; sourceTree = "<group>"; };
+		FA77BB36213B3AA000C8DEAC /* EmptyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyView.xib; sourceTree = "<group>"; };
 		FAB8746E21332D31004A0773 /* Canary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Canary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAB8747121332D31004A0773 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAB8747821332D35004A0773 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 			children = (
 				FA5B26A42139CC8F006043D4 /* EditViewController.swift */,
 				FA5B26A82139CCAD006043D4 /* EditView.xib */,
+				FA77BB36213B3AA000C8DEAC /* EmptyView.xib */,
 			);
 			path = Edit;
 			sourceTree = "<group>";
@@ -210,6 +213,7 @@
 				FAB8747921332D35004A0773 /* Assets.xcassets in Resources */,
 				FAB8748721332E87004A0773 /* InputView.xib in Resources */,
 				FA5B26A92139CCAD006043D4 /* EditView.xib in Resources */,
+				FA77BB37213B3AA000C8DEAC /* EmptyView.xib in Resources */,
 				FA1500D02135E90B0000E491 /* ThoughtTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
