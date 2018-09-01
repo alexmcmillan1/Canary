@@ -5,15 +5,20 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     private var items: [Thought] = []
     private var tableView: UITableView!
-    private var modalContainer: UIView!
+    private var modalContainerView: UIView!
+    private var modalViewAnimator: UIViewPropertyAnimator?
+    private var editViewController: EditViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        edgesForExtendedLayout = []
         tableView = createTableView()
-        modalContainer = createEditModalView()
         view.addSubview(tableView)
-        view.addSubview(modalContainer)
+        modalContainerView = createEditModal()
+        view.addSubview(modalContainerView)
+        constrainEditModal()
         setupNavigationBar()
+        setupAnimator()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -25,6 +30,12 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
     private func setupNavigationBar() {
         navigationItem.title = "Thoughts"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(tappedAdd))
+    }
+    
+    private func setupAnimator() {
+        modalViewAnimator = UIViewPropertyAnimator(duration: 0.5, curve: .easeOut, animations: {
+            self.modalContainerView.transform.ty -= UIScreen.main.bounds.height - 128
+        })
     }
     
     private func getItems() -> [Thought] {
@@ -42,15 +53,31 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
         return tableView
     }
     
-    private func createEditModalView() -> UIView {
-        let view = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.height - 64, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 64))
-        view.backgroundColor = .red
-        view.layer.cornerRadius = 16
-        view.clipsToBounds = true
-        let editViewController = EditViewController()
-        editViewController.view.backgroundColor = .blue
-        view.addSubview(editViewController.view)
-        return view
+    private func createEditModal() -> UIView {
+        let modalContainerView = UIView()
+        modalContainerView.backgroundColor = .red
+        
+        editViewController = EditViewController()
+        
+        editViewController?.view.backgroundColor = .blue
+        
+        modalContainerView.addSubview(editViewController!.view)
+        editViewController?.view.translatesAutoresizingMaskIntoConstraints = false
+        editViewController?.view.leadingAnchor.constraint(equalTo: modalContainerView.leadingAnchor).isActive = true
+        editViewController?.view.trailingAnchor.constraint(equalTo: modalContainerView.trailingAnchor).isActive = true
+        editViewController?.view.bottomAnchor.constraint(equalTo: modalContainerView.bottomAnchor).isActive = true
+        editViewController?.view.topAnchor.constraint(equalTo: modalContainerView.topAnchor).isActive = true
+        
+        modalContainerView.transform = modalContainerView.transform.translatedBy(x: 0, y: UIScreen.main.bounds.height)
+        return modalContainerView
+    }
+    
+    private func constrainEditModal() {
+        modalContainerView.translatesAutoresizingMaskIntoConstraints = false
+        modalContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        modalContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        modalContainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        modalContainerView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -81,9 +108,11 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let viewController = EditViewController()
-        viewController.setup(items[indexPath.row])
-        present(viewController, animated: true, completion: nil)
+        editViewController?.setup(items[indexPath.row])
+        let springAnimator = UIViewPropertyAnimator(duration: 0.5, dampingRatio: 0.9) {
+            self.modalContainerView.transform = .identity
+        }
+        springAnimator.startAnimation()
     }
     
     @objc private func tappedAdd() {
