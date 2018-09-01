@@ -12,15 +12,22 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
     private var modalContainerView: UIView!
     private var modalViewAnimator: UIViewPropertyAnimator?
     private var editViewController: EditViewController?
+    private var emptyView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         edgesForExtendedLayout = []
+        
         tableView = createTableView()
         view.addSubview(tableView)
+        
         modalContainerView = createEditModal()
         view.addSubview(modalContainerView)
         constrainEditModal()
+        
+        emptyView = createEmptyView()
+        view.addSubview(emptyView)
+        
         setupNavigationBar()
         setupAnimator()
     }
@@ -28,6 +35,7 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         items = getItems()
+        checkEmptyState()
         tableView.reloadData()
     }
     
@@ -82,6 +90,21 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
         modalContainerView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
     }
     
+    private func createEmptyView() -> UIView {
+        let emptyView = UIView(frame: UIScreen.main.bounds)
+        emptyView.backgroundColor = .white
+        
+        let label = UILabel()
+        label.text = "No thoughts"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        emptyView.addSubview(label)
+        label.centerXAnchor.constraint(equalTo: emptyView.centerXAnchor).isActive = true
+        label.centerYAnchor.constraint(equalTo: emptyView.centerYAnchor).isActive = true
+        
+        return emptyView
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
@@ -103,6 +126,7 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
                 }
                 self?.items.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
+                self?.checkEmptyState()
             }
         }
         
@@ -124,6 +148,15 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
     private func presentInputViewController() {
         let inputViewController = InputViewController()
         present(inputViewController, animated: true, completion: nil)
+    }
+    
+    private func checkEmptyState() {
+        showEmptyState(items.isEmpty)
+    }
+    
+    private func showEmptyState(_ show: Bool) {
+        tableView.isHidden = show
+        emptyView.isHidden = !show
     }
 }
 
