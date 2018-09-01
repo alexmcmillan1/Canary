@@ -1,6 +1,10 @@
 import UIKit
 import RealmSwift
 
+protocol EditorDelegate: class {
+    func tappedClose()
+}
+
 class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     private var items: [Thought] = []
@@ -55,11 +59,9 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     private func createEditModal() -> UIView {
         let modalContainerView = UIView()
-        modalContainerView.backgroundColor = .red
         
         editViewController = EditViewController()
-        
-        editViewController?.view.backgroundColor = .blue
+        editViewController?.delegate = self
         
         modalContainerView.addSubview(editViewController!.view)
         editViewController?.view.translatesAutoresizingMaskIntoConstraints = false
@@ -122,5 +124,14 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
     private func presentInputViewController() {
         let inputViewController = InputViewController()
         present(inputViewController, animated: true, completion: nil)
+    }
+}
+
+extension ThoughtsViewController: EditorDelegate {
+    
+    func tappedClose() {
+        UIViewPropertyAnimator(duration: 0.5, curve: .easeInOut) {
+            self.modalContainerView.transform = self.modalContainerView.transform.translatedBy(x: 0, y: UIScreen.main.bounds.height)
+        }.startAnimation()
     }
 }

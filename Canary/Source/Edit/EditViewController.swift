@@ -4,6 +4,7 @@ import RealmSwift
 class EditViewController: UIViewController {
     
     private var thought: Thought!
+    weak var delegate: EditorDelegate?
     
     @IBOutlet weak private var titleLabel: UILabel!
     @IBOutlet weak private var textView: UITextView!
@@ -15,8 +16,9 @@ class EditViewController: UIViewController {
     }
     
     @IBAction private func tappedClose(_ sender: Any) {
+        textView.resignFirstResponder()
         saveThought()
-        dismiss(animated: true)
+        delegate?.tappedClose()
     }
     
     private func saveThought() {
