@@ -46,6 +46,10 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
         let view = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.height - 64, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 64))
         view.backgroundColor = .red
         view.layer.cornerRadius = 16
+        view.clipsToBounds = true
+        let editViewController = EditViewController()
+        editViewController.view.backgroundColor = .blue
+        view.addSubview(editViewController.view)
         return view
     }
     

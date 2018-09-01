@@ -10,10 +10,6 @@ class EditViewController: UIViewController {
     
     func setup(_ thought: Thought) {
         self.thought = thought
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
         titleLabel.text = thought.title
         textView.text = thought.content
     }
