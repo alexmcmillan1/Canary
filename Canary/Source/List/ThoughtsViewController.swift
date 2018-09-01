@@ -5,11 +5,14 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     private var items: [Thought] = []
     private var tableView: UITableView!
+    private var modalContainer: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView = createTableView()
+        modalContainer = createEditModalView()
         view.addSubview(tableView)
+        view.addSubview(modalContainer)
         setupNavigationBar()
     }
     
@@ -37,6 +40,13 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
         tableView.separatorStyle = .none
         tableView.register(UINib(nibName: "ThoughtTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: ThoughtTableViewCell.reuseIdentifier)
         return tableView
+    }
+    
+    private func createEditModalView() -> UIView {
+        let view = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.height - 64, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 64))
+        view.backgroundColor = .red
+        view.layer.cornerRadius = 16
+        return view
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
