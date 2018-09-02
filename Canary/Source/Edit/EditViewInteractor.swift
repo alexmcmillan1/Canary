@@ -23,5 +23,6 @@ class EditViewInteractor: EditViewInteractorProtocol {
             }
         }
 
+        viewController?.finishedProcessing(success: true) // fix
     }
 }

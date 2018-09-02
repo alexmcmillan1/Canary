@@ -157,14 +157,23 @@ extension ThoughtsViewController: EditorDelegate {
             let velocity = sender.velocity(in: view)
 //            let halfComplete = (modalViewDismissalAnimator?.fractionComplete ?? 1) >= 0.5
             
-            modalViewDismissalAnimator?.isReversed = velocity.y < 50 || (modalViewDismissalAnimator?.fractionComplete ?? 1) < 0.5
+            let reversed = velocity.y < 50 || (modalViewDismissalAnimator?.fractionComplete ?? 1) < 0.5
+            
+            modalViewDismissalAnimator?.isReversed = reversed
             modalViewDismissalAnimator?.continueAnimation(withTimingParameters: nil, durationFactor: 0)
+            
+            if !reversed {
+                // Animation has proceeded: execute the action
+                editViewController?.executeLogic()
+            }
+            
         default:
             return
         }
     }
     
     func refreshData() {
+        actionOverlayView.alpha = 0
         items = getItems()
         checkEmptyState()
         tableView.reloadData()

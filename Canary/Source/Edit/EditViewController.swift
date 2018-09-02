@@ -35,16 +35,7 @@ class EditViewController: UIViewController, UITextViewDelegate {
         textView.resignFirstResponder()
         interactor.executeLogicChange(thought, save: shouldSave(initialText: initialText, finalText: textView.text),
                                       delete: shouldDelete(initialText: initialText, finalText: textView.text))
-//        saveThought()
         delegate?.tappedClose()
-    }
-    
-    private func saveThought() {
-        let realm = try! Realm()
-        try! realm.write {
-            thought.content = textView.text
-            realm.add(thought)
-        }
     }
     
     func shouldSave(initialText: String, finalText: String) -> Bool {
@@ -72,6 +63,7 @@ class EditViewController: UIViewController, UITextViewDelegate {
             delegate?.imminentActionChanged(imminentAction)
         }
         
+        thought.content = finalText
         previousImminentAction = imminentAction
         
         return true
@@ -81,7 +73,7 @@ class EditViewController: UIViewController, UITextViewDelegate {
 extension EditViewController: EditViewControllerProtocol {
     
     func finishedProcessing(success: Bool) {
-        // TODO: Tell thoughts list to refresh
+        delegate?.refreshData()
     }
     
     func executeLogic() {
