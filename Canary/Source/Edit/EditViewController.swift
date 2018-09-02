@@ -12,6 +12,9 @@ class EditViewController: UIViewController, UITextViewDelegate {
     private var priorImminentAction: EditAction = .Cancel
     private var imminentAction: EditAction = .Cancel
     
+    private var willSave: Bool = false
+    private var willDelete: Bool = false
+    
     weak var delegate: EditorDelegate?
     
     @IBOutlet weak private var textView: UITextView!
@@ -23,12 +26,12 @@ class EditViewController: UIViewController, UITextViewDelegate {
         textView.delegate = self
     }
     
-    func shouldSave() -> Bool {
-        return (initialText.isEmpty && !textView.text.isEmpty) || (!initialText.isEmpty && initialText != textView.text && !textView.text.isEmpty)
+    func shouldSave(modifiedText: String) -> Bool {
+        return (initialText.isEmpty && !modifiedText.isEmpty) || (!initialText.isEmpty && initialText != modifiedText && !modifiedText.isEmpty)
     }
     
-    func shouldDelete() -> Bool {
-        return !initialText.isEmpty && textView.text.isEmpty
+    func shouldDelete(modifiedText: String) -> Bool {
+        return !initialText.isEmpty && modifiedText.isEmpty
     }
 
     @IBAction func didpan(_ sender: Any) {
@@ -41,10 +44,10 @@ class EditViewController: UIViewController, UITextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         let finalText = (textView.text as NSString).replacingCharacters(in: range, with: text)
         
-        let shouldSave = self.shouldSave()
-        let shouldDelete = self.shouldDelete()
+        willSave = self.shouldSave(modifiedText: finalText)
+        willDelete = self.shouldDelete(modifiedText: finalText)
         
-        imminentAction = shouldSave ? .Save : shouldDelete ? .Delete : .Cancel
+        imminentAction = willSave ? .Save : willDelete ? .Delete : .Cancel
         
         if priorImminentAction != imminentAction {
             delegate?.imminentActionChanged(imminentAction)
@@ -66,9 +69,9 @@ extension EditViewController: EditViewControllerProtocol {
         try! realm.write {
             let thought = Thought.create(textView.text)
             thought.id = thoughtId
-            if shouldSave() {
+            if willSave {
                 realm.add(thought)
-            } else if shouldDelete() {
+            } else if willDelete {
                 realm.delete(thought)
             }
         }
