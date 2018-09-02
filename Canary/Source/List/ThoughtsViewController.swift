@@ -11,7 +11,6 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
     private var items: [Thought] = []
     private var tableView: UITableView!
     private var modalContainerView: UIView!
-    private var modalViewPresentationAnimator: UIViewPropertyAnimator?
     private var modalViewDismissalAnimator: UIViewPropertyAnimator?
     private var editViewController: EditViewController?
     private var emptyView: UIView!
@@ -166,8 +165,19 @@ extension ThoughtsViewController: EditorDelegate {
     
     func panned(_ sender: UIPanGestureRecognizer) {
         switch sender.state {
+        case .began:
+            // Set up animator for interactive dismissal
+            modalViewDismissalAnimator = UIViewPropertyAnimator(duration: 0.4, curve: .easeInOut, animations: {
+                self.modalContainerView.transform = CGAffineTransform(translationX: 0, y: UIScreen.main.bounds.height)
+            })
+            modalViewDismissalAnimator?.startAnimation()
+            modalViewDismissalAnimator?.pauseAnimation()
         case .changed:
-            print(sender.translation(in: view))
+            modalViewDismissalAnimator?.fractionComplete = sender.translation(in: view).y / UIScreen.main.bounds.height
+        case .ended:
+            let velocity = sender.velocity(in: view)
+            modalViewDismissalAnimator?.isReversed = velocity.y < 50
+            modalViewDismissalAnimator?.continueAnimation(withTimingParameters: nil, durationFactor: 0)
         default:
             return
         }

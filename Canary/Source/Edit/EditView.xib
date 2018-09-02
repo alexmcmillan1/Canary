@@ -38,7 +38,7 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="0.95883257769999997" green="0.95883257769999997" blue="0.95883257769999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <gestureRecognizers/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Ygz-h8-2oZ" secondAttribute="trailing" constant="16" id="5Ij-uk-ylj"/>
