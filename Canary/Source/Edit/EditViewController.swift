@@ -2,26 +2,24 @@ import UIKit
 import RealmSwift
 
 protocol EditViewControllerProtocol: class {
-    func finishedProcessing(success: Bool)
     func executeLogic()
 }
 
 class EditViewController: UIViewController, UITextViewDelegate {
     
+    private var thoughtId: String!
     private var initialText: String!
-    private var thought: Thought!
-    private var previousImminentAction: EditAction = .Cancel
+    private var priorImminentAction: EditAction = .Cancel
     private var imminentAction: EditAction = .Cancel
-    private var editedText: String?
     
     weak var delegate: EditorDelegate?
     
     @IBOutlet weak private var textView: UITextView!
     
     func setup(_ thought: Thought) {
-        self.thought = thought
-        textView.text = thought.content
+        thoughtId = thought.id
         initialText = thought.content
+        textView.text = initialText
         textView.delegate = self
     }
     
@@ -34,6 +32,7 @@ class EditViewController: UIViewController, UITextViewDelegate {
     }
 
     @IBAction func didpan(_ sender: Any) {
+        textView.resignFirstResponder()
         if let panGestureRecognizer = sender as? UIPanGestureRecognizer {
             delegate?.panned(panGestureRecognizer)
         }
@@ -47,12 +46,11 @@ class EditViewController: UIViewController, UITextViewDelegate {
         
         imminentAction = shouldSave ? .Save : shouldDelete ? .Delete : .Cancel
         
-        if previousImminentAction != imminentAction {
+        if priorImminentAction != imminentAction {
             delegate?.imminentActionChanged(imminentAction)
         }
         
-        editedText = finalText
-        previousImminentAction = imminentAction
+        priorImminentAction = imminentAction
         
         return true
     }
@@ -60,25 +58,21 @@ class EditViewController: UIViewController, UITextViewDelegate {
 
 extension EditViewController: EditViewControllerProtocol {
     
-    func finishedProcessing(success: Bool) {
-        delegate?.refreshData()
-    }
-    
     func executeLogic() {
         textView.resignFirstResponder()
 
         let realm = try! Realm()
         
         try! realm.write {
+            let thought = Thought.create(textView.text)
+            thought.id = thoughtId
             if shouldSave() {
-                if initialText.isEmpty {
-                    realm.add(thought)
-                } else {
-                    thought.content = textView.text
-                }
+                realm.add(thought)
             } else if shouldDelete() {
                 realm.delete(thought)
             }
         }
+        
+        delegate?.refreshData()
     }
 }

@@ -23,26 +23,14 @@
             <subviews>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Body" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nDE-J0-0yV">
                     <rect key="frame" x="16" y="52" width="343" height="599"/>
+                    <color key="textColor" red="0.12549019607843137" green="0.14509803921568626" blue="0.23137254901960785" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="20"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ygz-h8-2oZ">
-                    <rect key="frame" x="315" y="36" width="44" height="44"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="44" id="DCv-1T-aun"/>
-                        <constraint firstAttribute="width" constant="44" id="Eql-ws-JiL"/>
-                    </constraints>
-                    <state key="normal" image="baseline_check_black_36pt"/>
-                    <connections>
-                        <action selector="tappedClose:" destination="-1" eventType="touchUpInside" id="3Qc-dq-pnF"/>
-                    </connections>
-                </button>
             </subviews>
-            <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" red="0.93725490196078431" green="0.92549019607843142" blue="0.85098039215686272" alpha="1" colorSpace="calibratedRGB"/>
             <gestureRecognizers/>
             <constraints>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Ygz-h8-2oZ" secondAttribute="trailing" constant="16" id="5Ij-uk-ylj"/>
-                <constraint firstItem="Ygz-h8-2oZ" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="16" id="AF0-eJ-u7G"/>
                 <constraint firstItem="nDE-J0-0yV" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="32" id="TtT-3L-0kC"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="nDE-J0-0yV" secondAttribute="bottom" constant="16" id="Wcz-XG-oAF"/>
                 <constraint firstItem="nDE-J0-0yV" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="fYd-SD-5Qz"/>
@@ -59,7 +47,4 @@
             </connections>
         </panGestureRecognizer>
     </objects>
-    <resources>
-        <image name="baseline_check_black_36pt" width="36" height="36"/>
-    </resources>
 </document>
