@@ -1,9 +1,17 @@
 import UIKit
 import RealmSwift
 
+enum EditAction {
+    case Save
+    case Delete
+    case Cancel
+}
+
 protocol EditorDelegate: class {
     func panned(_ sender: UIPanGestureRecognizer)
     func tappedClose()
+    func refreshData()
+    func imminentActionChanged(_ action: EditAction)
 }
 
 class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -14,23 +22,39 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
     private var modalViewDismissalAnimator: UIViewPropertyAnimator?
     private var editViewController: EditViewController?
     private var emptyView: UIView!
+    private var actionOverlayView: ActionOverlayView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         edgesForExtendedLayout = []
-        
+        setupTableView()
+        setupEmptyView()
+        setupEditView()
+        setupActionOverlayView()
+        setupNavigationBar()
+    }
+    
+    private func setupTableView() {
         tableView = createTableView()
         view.addSubview(tableView)
-        
+    }
+    
+    private func setupEmptyView() {
         emptyView = EmptyViewController().view
         view.addSubview(emptyView)
         constrainEmptyView()
-        
-        modalContainerView = createEditModal()
+    }
+    
+    private func setupEditView() {
+        modalContainerView = createModalContainerView()
         view.addSubview(modalContainerView)
-        constrainEditModal()
-        
-        setupNavigationBar()
+        constrainModalContainerView()
+    }
+    
+    private func setupActionOverlayView() {
+        actionOverlayView = ActionOverlayView()
+        modalContainerView.addSubview(actionOverlayView)
+        constrainActionOverlayView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,52 +72,6 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
     private func getItems() -> [Thought] {
         let realm = try! Realm()
         return realm.objects(Thought.self).map { $0 }
-    }
-    
-    private func createTableView() -> UITableView {
-        let tableView = UITableView(frame: UIScreen.main.bounds)
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.rowHeight = 64
-        tableView.separatorStyle = .none
-        tableView.register(UINib(nibName: "ThoughtTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: ThoughtTableViewCell.reuseIdentifier)
-        return tableView
-    }
-    
-    private func createEditModal() -> UIView {
-        let modalContainerView = UIView()
-        
-        let editViewInteractor = EditViewInteractor()
-        editViewController = EditViewController(interactor: editViewInteractor)
-        editViewInteractor.viewController = editViewController
-        editViewController?.delegate = self
-        
-        modalContainerView.addSubview(editViewController!.view)
-        editViewController?.view.translatesAutoresizingMaskIntoConstraints = false
-        editViewController?.view.leadingAnchor.constraint(equalTo: modalContainerView.leadingAnchor).isActive = true
-        editViewController?.view.trailingAnchor.constraint(equalTo: modalContainerView.trailingAnchor).isActive = true
-        editViewController?.view.bottomAnchor.constraint(equalTo: modalContainerView.bottomAnchor).isActive = true
-        editViewController?.view.topAnchor.constraint(equalTo: modalContainerView.topAnchor).isActive = true
-        
-        modalContainerView.transform = modalContainerView.transform.translatedBy(x: 0, y: UIScreen.main.bounds.height)
-        
-        return modalContainerView
-    }
-    
-    private func constrainEditModal() {
-        modalContainerView.translatesAutoresizingMaskIntoConstraints = false
-        modalContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        modalContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        modalContainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        modalContainerView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-    }
-    
-    private func constrainEmptyView() {
-        emptyView.translatesAutoresizingMaskIntoConstraints = false
-        emptyView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        emptyView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        emptyView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        emptyView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -181,5 +159,79 @@ extension ThoughtsViewController: EditorDelegate {
         default:
             return
         }
+    }
+    
+    func refreshData() {
+        items = getItems()
+        checkEmptyState()
+        tableView.reloadData()
+    }
+    
+    func imminentActionChanged(_ action: EditAction) {
+        //
+    }
+}
+
+extension ThoughtsViewController {
+    
+    // MARK: Creating subviews
+    
+    private func createTableView() -> UITableView {
+        let tableView = UITableView(frame: UIScreen.main.bounds)
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.rowHeight = 64
+        tableView.separatorStyle = .none
+        tableView.register(UINib(nibName: "ThoughtTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: ThoughtTableViewCell.reuseIdentifier)
+        return tableView
+    }
+    
+    private func createModalContainerView() -> UIView {
+        let modalContainerView = UIView()
+        
+        let editViewInteractor = EditViewInteractor()
+        editViewController = EditViewController(interactor: editViewInteractor)
+        editViewInteractor.viewController = editViewController
+        editViewController?.delegate = self
+        
+        modalContainerView.addSubview(editViewController!.view)
+        editViewController?.view.translatesAutoresizingMaskIntoConstraints = false
+        editViewController?.view.leadingAnchor.constraint(equalTo: modalContainerView.leadingAnchor).isActive = true
+        editViewController?.view.trailingAnchor.constraint(equalTo: modalContainerView.trailingAnchor).isActive = true
+        editViewController?.view.bottomAnchor.constraint(equalTo: modalContainerView.bottomAnchor).isActive = true
+        editViewController?.view.topAnchor.constraint(equalTo: modalContainerView.topAnchor).isActive = true
+        
+        modalContainerView.transform = modalContainerView.transform.translatedBy(x: 0, y: UIScreen.main.bounds.height)
+        
+        return modalContainerView
+    }
+}
+
+extension ThoughtsViewController {
+    
+    // MARK: Constraining subviews
+    
+    private func constrainModalContainerView() {
+        modalContainerView.translatesAutoresizingMaskIntoConstraints = false
+        modalContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        modalContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        modalContainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        modalContainerView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+    }
+    
+    private func constrainEmptyView() {
+        emptyView.translatesAutoresizingMaskIntoConstraints = false
+        emptyView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        emptyView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        emptyView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        emptyView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+    }
+    
+    private func constrainActionOverlayView() {
+        actionOverlayView.translatesAutoresizingMaskIntoConstraints = false
+        actionOverlayView.leadingAnchor.constraint(equalTo: modalContainerView.leadingAnchor).isActive = true
+        actionOverlayView.trailingAnchor.constraint(equalTo: modalContainerView.trailingAnchor).isActive = true
+        actionOverlayView.bottomAnchor.constraint(equalTo: modalContainerView.bottomAnchor).isActive = true
+        actionOverlayView.topAnchor.constraint(equalTo: modalContainerView.topAnchor).isActive = true
     }
 }

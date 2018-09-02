@@ -20,6 +20,7 @@
 		FA77BB49213BF2F700C8DEAC /* EditViewInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA77BB48213BF2F700C8DEAC /* EditViewInteractor.swift */; };
 		FA77BB4E213BFFCB00C8DEAC /* GestureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA77BB4C213BFFCB00C8DEAC /* GestureViewController.swift */; };
 		FA77BB4F213BFFCB00C8DEAC /* GestureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA77BB4D213BFFCB00C8DEAC /* GestureViewController.xib */; };
+		FA77BB51213C3AF000C8DEAC /* ActionOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA77BB50213C3AF000C8DEAC /* ActionOverlayView.swift */; };
 		FAB8747221332D31004A0773 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB8747121332D31004A0773 /* AppDelegate.swift */; };
 		FAB8747921332D35004A0773 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAB8747821332D35004A0773 /* Assets.xcassets */; };
 		FAB8747C21332D35004A0773 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAB8747A21332D35004A0773 /* LaunchScreen.storyboard */; };
@@ -53,6 +54,7 @@
 		FA77BB48213BF2F700C8DEAC /* EditViewInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewInteractor.swift; sourceTree = "<group>"; };
 		FA77BB4C213BFFCB00C8DEAC /* GestureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureViewController.swift; sourceTree = "<group>"; };
 		FA77BB4D213BFFCB00C8DEAC /* GestureViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GestureViewController.xib; sourceTree = "<group>"; };
+		FA77BB50213C3AF000C8DEAC /* ActionOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionOverlayView.swift; sourceTree = "<group>"; };
 		FAB8746E21332D31004A0773 /* Canary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Canary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAB8747121332D31004A0773 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAB8747821332D35004A0773 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				FA1500CE2135E90B0000E491 /* ThoughtTableViewCell.xib */,
 				FA77BB38213B4D4C00C8DEAC /* EmptyViewController.swift */,
 				FA77BB36213B3AA000C8DEAC /* EmptyView.xib */,
+				FA77BB50213C3AF000C8DEAC /* ActionOverlayView.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA1500C82135D3ED0000E491 /* ThoughtsViewController.swift in Sources */,
+				FA77BB51213C3AF000C8DEAC /* ActionOverlayView.swift in Sources */,
 				FA77BB39213B4D4C00C8DEAC /* EmptyViewController.swift in Sources */,
 				FA1500C62135C5980000E491 /* Thought.swift in Sources */,
 				FA5B26A52139CC8F006043D4 /* EditViewController.swift in Sources */,
