@@ -27,6 +27,7 @@ class EditViewController: UIViewController, UITextViewDelegate {
         self.thought = thought
         textView.text = thought.content
         initialText = thought.content
+        textView.delegate = self
     }
     
     // This will become redundant if panning becomes the only way to close

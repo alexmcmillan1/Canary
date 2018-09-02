@@ -146,6 +146,7 @@ extension ThoughtsViewController: EditorDelegate {
         case .began:
             // Set up animator for interactive dismissal
             modalViewDismissalAnimator = UIViewPropertyAnimator(duration: 0.4, curve: .easeInOut, animations: {
+                self.actionOverlayView.alpha = 1
                 self.modalContainerView.transform = CGAffineTransform(translationX: 0, y: UIScreen.main.bounds.height)
             })
             modalViewDismissalAnimator?.startAnimation()
@@ -154,7 +155,9 @@ extension ThoughtsViewController: EditorDelegate {
             modalViewDismissalAnimator?.fractionComplete = sender.translation(in: view).y / UIScreen.main.bounds.height
         case .ended:
             let velocity = sender.velocity(in: view)
-            modalViewDismissalAnimator?.isReversed = velocity.y < 50
+//            let halfComplete = (modalViewDismissalAnimator?.fractionComplete ?? 1) >= 0.5
+            
+            modalViewDismissalAnimator?.isReversed = velocity.y < 50 || (modalViewDismissalAnimator?.fractionComplete ?? 1) < 0.5
             modalViewDismissalAnimator?.continueAnimation(withTimingParameters: nil, durationFactor: 0)
         default:
             return
@@ -168,7 +171,14 @@ extension ThoughtsViewController: EditorDelegate {
     }
     
     func imminentActionChanged(_ action: EditAction) {
-        //
+        switch action {
+        case .Save:
+            actionOverlayView.image = #imageLiteral(resourceName: "save")
+        case .Cancel:
+            actionOverlayView.image = #imageLiteral(resourceName: "delete_cancel")
+        case .Delete:
+            actionOverlayView.image = #imageLiteral(resourceName: "delete_cancel")
+        }
     }
 }
 

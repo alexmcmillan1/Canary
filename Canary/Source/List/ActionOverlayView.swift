@@ -2,13 +2,13 @@ import UIKit
 
 class ActionOverlayView: UIView {
     
-    var text: String? {
+    var image: UIImage? {
         didSet {
-            textLabel.text = text
+            imageView.image = image
         }
     }
     
-    private let textLabel = UILabel()
+    private let imageView = UIImageView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,13 +26,14 @@ class ActionOverlayView: UIView {
         alpha = 0
         backgroundColor = .white
         
-        textLabel.textColor = .black
-        textLabel.textAlignment = .center
-        textLabel.translatesAutoresizingMaskIntoConstraints = false
-        text = "Cancel"
+        imageView.contentMode = .center
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = #imageLiteral(resourceName: "delete_cancel")
         
-        addSubview(textLabel)
-        textLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        textLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        addSubview(imageView)
+        imageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        imageView.topAnchor.constraint(equalTo: topAnchor, constant: 72).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: 60)
+        imageView.widthAnchor.constraint(equalToConstant: 60)
     }
 }
