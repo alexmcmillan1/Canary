@@ -22,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Body" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nDE-J0-0yV">
-                    <rect key="frame" x="16" y="36" width="343" height="615"/>
+                    <rect key="frame" x="16" y="52" width="343" height="599"/>
                     <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="20"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
@@ -38,17 +38,26 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="0.96634935992104665" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.95883257769999997" green="0.95883257769999997" blue="0.95883257769999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <gestureRecognizers/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Ygz-h8-2oZ" secondAttribute="trailing" constant="16" id="5Ij-uk-ylj"/>
                 <constraint firstItem="Ygz-h8-2oZ" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="16" id="AF0-eJ-u7G"/>
-                <constraint firstItem="nDE-J0-0yV" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="16" id="TtT-3L-0kC"/>
+                <constraint firstItem="nDE-J0-0yV" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="32" id="TtT-3L-0kC"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="nDE-J0-0yV" secondAttribute="bottom" constant="16" id="Wcz-XG-oAF"/>
                 <constraint firstItem="nDE-J0-0yV" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="fYd-SD-5Qz"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="nDE-J0-0yV" secondAttribute="trailing" constant="16" id="xWA-Qz-ZHv"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="lNQ-tg-LOI" appends="YES" id="kiC-ax-OHM"/>
+            </connections>
         </view>
+        <panGestureRecognizer minimumNumberOfTouches="1" id="lNQ-tg-LOI">
+            <connections>
+                <action selector="didpan:" destination="-1" id="p0z-mh-HUt"/>
+            </connections>
+        </panGestureRecognizer>
     </objects>
     <resources>
         <image name="baseline_check_black_36pt" width="36" height="36"/>

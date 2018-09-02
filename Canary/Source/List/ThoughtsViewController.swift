@@ -2,6 +2,7 @@ import UIKit
 import RealmSwift
 
 protocol EditorDelegate: class {
+    func panned(_ sender: UIPanGestureRecognizer)
     func tappedClose()
 }
 
@@ -10,7 +11,8 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
     private var items: [Thought] = []
     private var tableView: UITableView!
     private var modalContainerView: UIView!
-    private var modalViewAnimator: UIViewPropertyAnimator?
+    private var modalViewPresentationAnimator: UIViewPropertyAnimator?
+    private var modalViewDismissalAnimator: UIViewPropertyAnimator?
     private var editViewController: EditViewController?
     private var emptyView: UIView!
     
@@ -21,16 +23,15 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
         tableView = createTableView()
         view.addSubview(tableView)
         
-        modalContainerView = createEditModal()
-        view.addSubview(modalContainerView)
-        constrainEditModal()
-        
         emptyView = EmptyViewController().view
         view.addSubview(emptyView)
         constrainEmptyView()
         
+        modalContainerView = createEditModal()
+        view.addSubview(modalContainerView)
+        constrainEditModal()
+        
         setupNavigationBar()
-        setupAnimator()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,12 +44,6 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
     private func setupNavigationBar() {
         navigationItem.title = "Thoughts"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(tappedAdd))
-    }
-    
-    private func setupAnimator() {
-        modalViewAnimator = UIViewPropertyAnimator(duration: 0.5, curve: .easeOut, animations: {
-            self.modalContainerView.transform.ty -= UIScreen.main.bounds.height - 128
-        })
     }
     
     private func getItems() -> [Thought] {
@@ -82,6 +77,7 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
         editViewController?.view.topAnchor.constraint(equalTo: modalContainerView.topAnchor).isActive = true
         
         modalContainerView.transform = modalContainerView.transform.translatedBy(x: 0, y: UIScreen.main.bounds.height)
+        
         return modalContainerView
     }
     
@@ -131,6 +127,7 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         editViewController?.setup(items[indexPath.row])
+        
         let springAnimator = UIViewPropertyAnimator(duration: 0.5, dampingRatio: 0.9) {
             self.modalContainerView.transform = .identity
         }
@@ -165,5 +162,14 @@ extension ThoughtsViewController: EditorDelegate {
         UIViewPropertyAnimator(duration: 0.5, curve: .easeInOut) {
             self.modalContainerView.transform = self.modalContainerView.transform.translatedBy(x: 0, y: UIScreen.main.bounds.height)
         }.startAnimation()
+    }
+    
+    func panned(_ sender: UIPanGestureRecognizer) {
+        switch sender.state {
+        case .changed:
+            print(sender.translation(in: view))
+        default:
+            return
+        }
     }
 }

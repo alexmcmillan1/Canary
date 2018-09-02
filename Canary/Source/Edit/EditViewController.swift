@@ -14,7 +14,8 @@ class EditViewController: UIViewController {
     weak var delegate: EditorDelegate?
     
     @IBOutlet weak private var textView: UITextView!
-
+    @IBOutlet weak var tapTestView: UIView!
+    
     convenience init(interactor: EditViewInteractorProtocol) {
         self.init()
         self.interactor = interactor
@@ -32,7 +33,7 @@ class EditViewController: UIViewController {
                                       save: shouldSave(initialText: initialText, finalText: textView.text),
                                       delete: shouldDelete(initialText: initialText, finalText: textView.text))
 //        saveThought()
-//        delegate?.tappedClose()
+        delegate?.tappedClose()
     }
     
     private func saveThought() {
@@ -50,6 +51,13 @@ class EditViewController: UIViewController {
     func shouldDelete(initialText: String, finalText: String) -> Bool {
         return !initialText.isEmpty && finalText.isEmpty
     }
+
+    @IBAction func didpan(_ sender: Any) {
+        if let panGestureRecognizer = sender as? UIPanGestureRecognizer {
+            delegate?.panned(panGestureRecognizer)
+        }
+    }
+    
 }
 
 extension EditViewController: EditViewControllerProtocol {
