@@ -8,20 +8,15 @@ protocol EditViewControllerProtocol: class {
 
 class EditViewController: UIViewController, UITextViewDelegate {
     
-    private var interactor: EditViewInteractorProtocol!
     private var initialText: String!
     private var thought: Thought!
     private var previousImminentAction: EditAction = .Cancel
     private var imminentAction: EditAction = .Cancel
+    private var editedText: String?
     
     weak var delegate: EditorDelegate?
     
     @IBOutlet weak private var textView: UITextView!
-    
-    convenience init(interactor: EditViewInteractorProtocol) {
-        self.init()
-        self.interactor = interactor
-    }
     
     func setup(_ thought: Thought) {
         self.thought = thought
@@ -30,20 +25,12 @@ class EditViewController: UIViewController, UITextViewDelegate {
         textView.delegate = self
     }
     
-    // This will become redundant if panning becomes the only way to close
-    @IBAction private func tappedClose(_ sender: Any) {
-        textView.resignFirstResponder()
-        interactor.executeLogicChange(thought, save: shouldSave(initialText: initialText, finalText: textView.text),
-                                      delete: shouldDelete(initialText: initialText, finalText: textView.text))
-        delegate?.tappedClose()
+    func shouldSave() -> Bool {
+        return (initialText.isEmpty && !textView.text.isEmpty) || (!initialText.isEmpty && initialText != textView.text && !textView.text.isEmpty)
     }
     
-    func shouldSave(initialText: String, finalText: String) -> Bool {
-        return (initialText.isEmpty && !finalText.isEmpty) || (!initialText.isEmpty && initialText != finalText && !finalText.isEmpty)
-    }
-    
-    func shouldDelete(initialText: String, finalText: String) -> Bool {
-        return !initialText.isEmpty && finalText.isEmpty
+    func shouldDelete() -> Bool {
+        return !initialText.isEmpty && textView.text.isEmpty
     }
 
     @IBAction func didpan(_ sender: Any) {
@@ -54,8 +41,9 @@ class EditViewController: UIViewController, UITextViewDelegate {
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         let finalText = (textView.text as NSString).replacingCharacters(in: range, with: text)
-        let shouldSave = self.shouldSave(initialText: textView.text, finalText: finalText)
-        let shouldDelete = self.shouldDelete(initialText: textView.text, finalText: finalText)
+        
+        let shouldSave = self.shouldSave()
+        let shouldDelete = self.shouldDelete()
         
         imminentAction = shouldSave ? .Save : shouldDelete ? .Delete : .Cancel
         
@@ -63,7 +51,7 @@ class EditViewController: UIViewController, UITextViewDelegate {
             delegate?.imminentActionChanged(imminentAction)
         }
         
-        thought.content = finalText
+        editedText = finalText
         previousImminentAction = imminentAction
         
         return true
@@ -77,7 +65,20 @@ extension EditViewController: EditViewControllerProtocol {
     }
     
     func executeLogic() {
-        interactor.executeLogicChange(thought, save: shouldSave(initialText: initialText, finalText: textView.text),
-                                      delete: shouldDelete(initialText: initialText, finalText: textView.text))
+        textView.resignFirstResponder()
+
+        let realm = try! Realm()
+        
+        try! realm.write {
+            if shouldSave() {
+                if initialText.isEmpty {
+                    realm.add(thought)
+                } else {
+                    thought.content = textView.text
+                }
+            } else if shouldDelete() {
+                realm.delete(thought)
+            }
+        }
     }
 }

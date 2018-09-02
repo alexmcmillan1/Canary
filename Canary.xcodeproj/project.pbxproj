@@ -17,7 +17,6 @@
 		FA77BB37213B3AA000C8DEAC /* EmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA77BB36213B3AA000C8DEAC /* EmptyView.xib */; };
 		FA77BB39213B4D4C00C8DEAC /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA77BB38213B4D4C00C8DEAC /* EmptyViewController.swift */; };
 		FA77BB41213BEEFD00C8DEAC /* CanaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA77BB40213BEEFD00C8DEAC /* CanaryTests.swift */; };
-		FA77BB49213BF2F700C8DEAC /* EditViewInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA77BB48213BF2F700C8DEAC /* EditViewInteractor.swift */; };
 		FA77BB4E213BFFCB00C8DEAC /* GestureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA77BB4C213BFFCB00C8DEAC /* GestureViewController.swift */; };
 		FA77BB4F213BFFCB00C8DEAC /* GestureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA77BB4D213BFFCB00C8DEAC /* GestureViewController.xib */; };
 		FA77BB51213C3AF000C8DEAC /* ActionOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA77BB50213C3AF000C8DEAC /* ActionOverlayView.swift */; };
@@ -51,7 +50,6 @@
 		FA77BB3E213BEEFD00C8DEAC /* CanaryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CanaryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA77BB40213BEEFD00C8DEAC /* CanaryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanaryTests.swift; sourceTree = "<group>"; };
 		FA77BB42213BEEFD00C8DEAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FA77BB48213BF2F700C8DEAC /* EditViewInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewInteractor.swift; sourceTree = "<group>"; };
 		FA77BB4C213BFFCB00C8DEAC /* GestureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureViewController.swift; sourceTree = "<group>"; };
 		FA77BB4D213BFFCB00C8DEAC /* GestureViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GestureViewController.xib; sourceTree = "<group>"; };
 		FA77BB50213C3AF000C8DEAC /* ActionOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionOverlayView.swift; sourceTree = "<group>"; };
@@ -103,7 +101,6 @@
 			children = (
 				FA5B26A42139CC8F006043D4 /* EditViewController.swift */,
 				FA5B26A82139CCAD006043D4 /* EditView.xib */,
-				FA77BB48213BF2F700C8DEAC /* EditViewInteractor.swift */,
 			);
 			path = Edit;
 			sourceTree = "<group>";
@@ -343,7 +340,6 @@
 				FA1500C62135C5980000E491 /* Thought.swift in Sources */,
 				FA5B26A52139CC8F006043D4 /* EditViewController.swift in Sources */,
 				FA77BB4E213BFFCB00C8DEAC /* GestureViewController.swift in Sources */,
-				FA77BB49213BF2F700C8DEAC /* EditViewInteractor.swift in Sources */,
 				FA1500CF2135E90B0000E491 /* ThoughtTableViewCell.swift in Sources */,
 				FAB8747221332D31004A0773 /* AppDelegate.swift in Sources */,
 			);

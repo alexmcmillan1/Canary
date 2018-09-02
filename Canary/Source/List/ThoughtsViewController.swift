@@ -208,9 +208,7 @@ extension ThoughtsViewController {
     private func createModalContainerView() -> UIView {
         let modalContainerView = UIView()
         
-        let editViewInteractor = EditViewInteractor()
-        editViewController = EditViewController(interactor: editViewInteractor)
-        editViewInteractor.viewController = editViewController
+        editViewController = EditViewController()
         editViewController?.delegate = self
         
         modalContainerView.addSubview(editViewController!.view)
