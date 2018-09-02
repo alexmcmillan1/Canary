@@ -25,8 +25,9 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
         view.addSubview(modalContainerView)
         constrainEditModal()
         
-        emptyView = createEmptyView()
+        emptyView = EmptyViewController().view
         view.addSubview(emptyView)
+        constrainEmptyView()
         
         setupNavigationBar()
         setupAnimator()
@@ -90,19 +91,12 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
         modalContainerView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
     }
     
-    private func createEmptyView() -> UIView {
-        let emptyView = UIView(frame: UIScreen.main.bounds)
-        emptyView.backgroundColor = .white
-        
-        let label = UILabel()
-        label.text = "No thoughts"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        
-        emptyView.addSubview(label)
-        label.centerXAnchor.constraint(equalTo: emptyView.centerXAnchor).isActive = true
-        label.centerYAnchor.constraint(equalTo: emptyView.centerYAnchor).isActive = true
-        
-        return emptyView
+    private func constrainEmptyView() {
+        emptyView.translatesAutoresizingMaskIntoConstraints = false
+        emptyView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        emptyView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        emptyView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        emptyView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -146,8 +140,11 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     private func presentInputViewController() {
-        let inputViewController = InputViewController()
-        present(inputViewController, animated: true, completion: nil)
+        editViewController?.setup(Thought.create())
+        let springAnimator = UIViewPropertyAnimator(duration: 0.5, dampingRatio: 0.9) {
+            self.modalContainerView.transform = .identity
+        }
+        springAnimator.startAnimation()
     }
     
     private func checkEmptyState() {
