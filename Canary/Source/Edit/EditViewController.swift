@@ -28,8 +28,9 @@ class EditViewController: UIViewController {
     
     @IBAction private func tappedClose(_ sender: Any) {
         textView.resignFirstResponder()
-        let closeLogic = getCloseLogic(initialText: initialText, finalText: textView.text)
-        interactor.executeLogicChange(thought, save: closeLogic.save, delete: closeLogic.delete)
+        interactor.executeLogicChange(thought,
+                                      save: shouldSave(initialText: initialText, finalText: textView.text),
+                                      delete: shouldDelete(initialText: initialText, finalText: textView.text))
 //        saveThought()
 //        delegate?.tappedClose()
     }
@@ -42,39 +43,12 @@ class EditViewController: UIViewController {
         }
     }
     
-    func getCloseLogic(initialText: String, finalText: String) -> (save: Bool, delete: Bool) {
-        var save = false
-        var delete = false
-        
-        if initialText.isEmpty {
-            if finalText.isEmpty {
-                // Close and do not save.
-                save = false
-                delete = false
-            } else {
-                // Save and close.
-                save = true
-                delete = false
-            }
-        } else {
-            if finalText.isEmpty {
-                // Delete and close.
-                save = false
-                delete = true
-            } else {
-                if finalText != initialText {
-                    // Text has changed. Save and close.
-                    save = true
-                    delete = false
-                } else {
-                    // Text has not changed. Close.
-                    save = false
-                    delete = false
-                }
-            }
-        }
-        
-        return (save, delete)
+    func shouldSave(initialText: String, finalText: String) -> Bool {
+        return (initialText.isEmpty && !finalText.isEmpty) || (!initialText.isEmpty && initialText != finalText && !finalText.isEmpty)
+    }
+    
+    func shouldDelete(initialText: String, finalText: String) -> Bool {
+        return !initialText.isEmpty && finalText.isEmpty
     }
 }
 

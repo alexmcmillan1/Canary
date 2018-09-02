@@ -13,24 +13,27 @@ class CanaryTests: XCTestCase {
     }
 
     func test_wasEmpty_nowEmpty_closeLogicCorrect() {
-        let logic = editViewController.getCloseLogic(initialText: "", finalText: "")
-        mockInteractor.executeLogicChange(Thought.create(), save: logic.save, delete: logic.delete)
+        let shouldSave = editViewController.shouldSave(initialText: "", finalText: "")
+        let shouldDelete = editViewController.shouldDelete(initialText: "", finalText: "")
+        mockInteractor.executeLogicChange(Thought.create(), save: shouldSave, delete: shouldDelete)
         XCTAssertTrue(mockInteractor.executeLogicChangeCalled)
         XCTAssert(mockInteractor.save == false)
         XCTAssert(mockInteractor.delete == false)
     }
     
     func test_wasEmpty_nowNotEmpty_closeLogicCorrect() {
-        let logic = editViewController.getCloseLogic(initialText: "", finalText: "A")
-        mockInteractor.executeLogicChange(Thought.create(), save: logic.save, delete: logic.delete)
+        let shouldSave = editViewController.shouldSave(initialText: "", finalText: "A")
+        let shouldDelete = editViewController.shouldDelete(initialText: "", finalText: "A")
+        mockInteractor.executeLogicChange(Thought.create(), save: shouldSave, delete: shouldDelete)
         XCTAssertTrue(mockInteractor.executeLogicChangeCalled)
         XCTAssert(mockInteractor.save == true)
         XCTAssert(mockInteractor.delete == false)
     }
     
     func test_wasNotEmpty_nowEmpty_closeLogicCorrect() {
-        let logic = editViewController.getCloseLogic(initialText: "A", finalText: "")
-        mockInteractor.executeLogicChange(Thought.create(), save: logic.save, delete: logic.delete)
+        let shouldSave = editViewController.shouldSave(initialText: "A", finalText: "")
+        let shouldDelete = editViewController.shouldDelete(initialText: "A", finalText: "")
+        mockInteractor.executeLogicChange(Thought.create(), save: shouldSave, delete: shouldDelete)
         XCTAssertTrue(mockInteractor.executeLogicChangeCalled)
         XCTAssert(mockInteractor.save == false)
         XCTAssert(mockInteractor.delete == true)
