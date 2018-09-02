@@ -69,7 +69,9 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
     private func createEditModal() -> UIView {
         let modalContainerView = UIView()
         
-        editViewController = EditViewController()
+        let editViewInteractor = EditViewInteractor()
+        editViewController = EditViewController(interactor: editViewInteractor)
+        editViewInteractor.viewController = editViewController
         editViewController?.delegate = self
         
         modalContainerView.addSubview(editViewController!.view)

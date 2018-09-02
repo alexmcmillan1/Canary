@@ -16,10 +16,22 @@
 		FA5B26A92139CCAD006043D4 /* EditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA5B26A82139CCAD006043D4 /* EditView.xib */; };
 		FA77BB37213B3AA000C8DEAC /* EmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA77BB36213B3AA000C8DEAC /* EmptyView.xib */; };
 		FA77BB39213B4D4C00C8DEAC /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA77BB38213B4D4C00C8DEAC /* EmptyViewController.swift */; };
+		FA77BB41213BEEFD00C8DEAC /* CanaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA77BB40213BEEFD00C8DEAC /* CanaryTests.swift */; };
+		FA77BB49213BF2F700C8DEAC /* EditViewInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA77BB48213BF2F700C8DEAC /* EditViewInteractor.swift */; };
 		FAB8747221332D31004A0773 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB8747121332D31004A0773 /* AppDelegate.swift */; };
 		FAB8747921332D35004A0773 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAB8747821332D35004A0773 /* Assets.xcassets */; };
 		FAB8747C21332D35004A0773 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAB8747A21332D35004A0773 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FA77BB43213BEEFD00C8DEAC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FAB8746621332D31004A0773 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FAB8746D21332D31004A0773;
+			remoteInfo = Canary;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		5C66E27C16E64F6C5DECC5B3 /* Pods-Canary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Canary.release.xcconfig"; path = "Pods/Target Support Files/Pods-Canary/Pods-Canary.release.xcconfig"; sourceTree = "<group>"; };
@@ -33,6 +45,10 @@
 		FA5B26A82139CCAD006043D4 /* EditView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditView.xib; sourceTree = "<group>"; };
 		FA77BB36213B3AA000C8DEAC /* EmptyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyView.xib; sourceTree = "<group>"; };
 		FA77BB38213B4D4C00C8DEAC /* EmptyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewController.swift; sourceTree = "<group>"; };
+		FA77BB3E213BEEFD00C8DEAC /* CanaryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CanaryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA77BB40213BEEFD00C8DEAC /* CanaryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanaryTests.swift; sourceTree = "<group>"; };
+		FA77BB42213BEEFD00C8DEAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA77BB48213BF2F700C8DEAC /* EditViewInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewInteractor.swift; sourceTree = "<group>"; };
 		FAB8746E21332D31004A0773 /* Canary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Canary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAB8747121332D31004A0773 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAB8747821332D35004A0773 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -41,6 +57,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		FA77BB3B213BEEFD00C8DEAC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FAB8746B21332D31004A0773 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -74,10 +97,18 @@
 			children = (
 				FA5B26A42139CC8F006043D4 /* EditViewController.swift */,
 				FA5B26A82139CCAD006043D4 /* EditView.xib */,
-				FA77BB38213B4D4C00C8DEAC /* EmptyViewController.swift */,
-				FA77BB36213B3AA000C8DEAC /* EmptyView.xib */,
+				FA77BB48213BF2F700C8DEAC /* EditViewInteractor.swift */,
 			);
 			path = Edit;
+			sourceTree = "<group>";
+		};
+		FA77BB3F213BEEFD00C8DEAC /* CanaryTests */ = {
+			isa = PBXGroup;
+			children = (
+				FA77BB40213BEEFD00C8DEAC /* CanaryTests.swift */,
+				FA77BB42213BEEFD00C8DEAC /* Info.plist */,
+			);
+			path = CanaryTests;
 			sourceTree = "<group>";
 		};
 		FAA90226213752BF001A1CB1 /* List */ = {
@@ -86,6 +117,8 @@
 				FA1500C72135D3ED0000E491 /* ThoughtsViewController.swift */,
 				FA1500CD2135E90B0000E491 /* ThoughtTableViewCell.swift */,
 				FA1500CE2135E90B0000E491 /* ThoughtTableViewCell.xib */,
+				FA77BB38213B4D4C00C8DEAC /* EmptyViewController.swift */,
+				FA77BB36213B3AA000C8DEAC /* EmptyView.xib */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -102,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				FAB8747021332D31004A0773 /* Canary */,
+				FA77BB3F213BEEFD00C8DEAC /* CanaryTests */,
 				FAB8746F21332D31004A0773 /* Products */,
 				8C70C93A6C6E4D8DCEAAA50E /* Pods */,
 				6D7F352EC475024E322DA34D /* Frameworks */,
@@ -112,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				FAB8746E21332D31004A0773 /* Canary.app */,
+				FA77BB3E213BEEFD00C8DEAC /* CanaryTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -141,6 +176,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		FA77BB3D213BEEFD00C8DEAC /* CanaryTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA77BB45213BEEFD00C8DEAC /* Build configuration list for PBXNativeTarget "CanaryTests" */;
+			buildPhases = (
+				FA77BB3A213BEEFD00C8DEAC /* Sources */,
+				FA77BB3B213BEEFD00C8DEAC /* Frameworks */,
+				FA77BB3C213BEEFD00C8DEAC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FA77BB44213BEEFD00C8DEAC /* PBXTargetDependency */,
+			);
+			name = CanaryTests;
+			productName = CanaryTests;
+			productReference = FA77BB3E213BEEFD00C8DEAC /* CanaryTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		FAB8746D21332D31004A0773 /* Canary */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FAB8748021332D35004A0773 /* Build configuration list for PBXNativeTarget "Canary" */;
@@ -170,6 +223,10 @@
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Alex McMillan";
 				TargetAttributes = {
+					FA77BB3D213BEEFD00C8DEAC = {
+						CreatedOnToolsVersion = 9.4.1;
+						TestTargetID = FAB8746D21332D31004A0773;
+					};
 					FAB8746D21332D31004A0773 = {
 						CreatedOnToolsVersion = 9.4.1;
 					};
@@ -189,11 +246,19 @@
 			projectRoot = "";
 			targets = (
 				FAB8746D21332D31004A0773 /* Canary */,
+				FA77BB3D213BEEFD00C8DEAC /* CanaryTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		FA77BB3C213BEEFD00C8DEAC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FAB8746C21332D31004A0773 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -250,6 +315,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		FA77BB3A213BEEFD00C8DEAC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA77BB41213BEEFD00C8DEAC /* CanaryTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FAB8746A21332D31004A0773 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -258,12 +331,21 @@
 				FA77BB39213B4D4C00C8DEAC /* EmptyViewController.swift in Sources */,
 				FA1500C62135C5980000E491 /* Thought.swift in Sources */,
 				FA5B26A52139CC8F006043D4 /* EditViewController.swift in Sources */,
+				FA77BB49213BF2F700C8DEAC /* EditViewInteractor.swift in Sources */,
 				FA1500CF2135E90B0000E491 /* ThoughtTableViewCell.swift in Sources */,
 				FAB8747221332D31004A0773 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FA77BB44213BEEFD00C8DEAC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FAB8746D21332D31004A0773 /* Canary */;
+			targetProxy = FA77BB43213BEEFD00C8DEAC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		FAB8747A21332D35004A0773 /* LaunchScreen.storyboard */ = {
@@ -277,6 +359,46 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		FA77BB46213BEEFD00C8DEAC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B9NFATBJW3;
+				INFOPLIST_FILE = CanaryTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = co.irdm.CanaryTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Canary.app/Canary";
+			};
+			name = Debug;
+		};
+		FA77BB47213BEEFD00C8DEAC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B9NFATBJW3;
+				INFOPLIST_FILE = CanaryTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = co.irdm.CanaryTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Canary.app/Canary";
+			};
+			name = Release;
+		};
 		FAB8747E21332D35004A0773 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -434,6 +556,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		FA77BB45213BEEFD00C8DEAC /* Build configuration list for PBXNativeTarget "CanaryTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA77BB46213BEEFD00C8DEAC /* Debug */,
+				FA77BB47213BEEFD00C8DEAC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		FAB8746921332D31004A0773 /* Build configuration list for PBXProject "Canary" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
