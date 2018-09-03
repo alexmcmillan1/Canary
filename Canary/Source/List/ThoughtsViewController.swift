@@ -8,7 +8,8 @@ enum EditAction {
 }
 
 protocol EditorDelegate: class {
-    func panned(_ sender: UIPanGestureRecognizer)
+    func pannedToDismiss(_ sender: UIPanGestureRecognizer)
+    func pannedToAppear(_ sender: UIPanGestureRecognizer)
     func tappedClose()
     func refreshData()
     func imminentActionChanged(_ action: EditAction)
@@ -19,10 +20,12 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
     private var items: [Thought] = []
     private var tableView: UITableView!
     private var modalContainerView: UIView!
-    private var modalViewDismissalAnimator: UIViewPropertyAnimator?
     private var editViewController: EditViewController?
     private var emptyView: UIView!
     private var actionOverlayView: ActionOverlayView!
+    
+    private var modalViewAppearanceAnimator: UIViewPropertyAnimator?
+    private var modalViewDismissalAnimator: UIViewPropertyAnimator?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -141,7 +144,7 @@ extension ThoughtsViewController: EditorDelegate {
         }.startAnimation()
     }
     
-    func panned(_ sender: UIPanGestureRecognizer) {
+    func pannedToDismiss(_ sender: UIPanGestureRecognizer) {
         switch sender.state {
         case .began:
             // Set up animator for interactive dismissal
@@ -167,6 +170,27 @@ extension ThoughtsViewController: EditorDelegate {
                 editViewController?.executeLogic()
             }
             
+        default:
+            return
+        }
+    }
+    
+    func pannedToAppear(_ sender: UIPanGestureRecognizer) {
+        switch sender.state {
+        case .began:
+            // Create animator
+            modalViewAppearanceAnimator = UIViewPropertyAnimator(duration: 0.4, curve: .easeInOut, animations: {
+                self.actionOverlayView.alpha = 1
+                self.modalContainerView.transform = CGAffineTransform(translationX: 0, y: 0)
+            })
+            modalViewAppearanceAnimator?.startAnimation()
+            modalViewAppearanceAnimator?.pauseAnimation()
+        // TODO: Set up view controller with empty thought
+        case .changed:
+            modalViewAppearanceAnimator?.fractionComplete = sender.translation(in: view).y / UIScreen.main.bounds.height
+        case .ended:
+            modalViewAppearanceAnimator?.continueAnimation(withTimingParameters: nil, durationFactor: 0)
+        // TODO: Set up view controller with empty thought
         default:
             return
         }
@@ -218,7 +242,10 @@ extension ThoughtsViewController {
         editViewController?.view.bottomAnchor.constraint(equalTo: modalContainerView.bottomAnchor).isActive = true
         editViewController?.view.topAnchor.constraint(equalTo: modalContainerView.topAnchor).isActive = true
         
-        modalContainerView.transform = modalContainerView.transform.translatedBy(x: 0, y: UIScreen.main.bounds.height)
+        print("modal y is \(modalContainerView.frame.minX)")
+        print("screen height is \(UIScreen.main.bounds.height)")
+        
+        modalContainerView.transform = modalContainerView.transform.translatedBy(x: 0, y: UIScreen.main.bounds.height - 64 - 88)
         
         return modalContainerView
     }

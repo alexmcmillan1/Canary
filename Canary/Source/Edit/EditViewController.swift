@@ -17,6 +17,11 @@ class EditViewController: UIViewController, UITextViewDelegate {
     
     weak var delegate: EditorDelegate?
     
+    @IBOutlet var dismissPanGestureRecognizer: UIPanGestureRecognizer!
+    
+    @IBOutlet var appearPanGestureRecognizer: UIPanGestureRecognizer!
+    
+    
     @IBOutlet weak private var textView: UITextView!
     
     func setup(_ thought: Thought) {
@@ -34,10 +39,16 @@ class EditViewController: UIViewController, UITextViewDelegate {
         return !initialText.isEmpty && modifiedText.isEmpty
     }
 
-    @IBAction func didpan(_ sender: Any) {
+    @IBAction func didPanToDismiss(_ sender: Any) {
         textView.resignFirstResponder()
         if let panGestureRecognizer = sender as? UIPanGestureRecognizer {
-            delegate?.panned(panGestureRecognizer)
+            delegate?.pannedToDismiss(panGestureRecognizer)
+        }
+    }
+    
+    @IBAction func didPanToAppear(_ sender: Any) {
+        if let panGestureRecognizer = sender as? UIPanGestureRecognizer {
+            delegate?.pannedToAppear(panGestureRecognizer)
         }
     }
     
