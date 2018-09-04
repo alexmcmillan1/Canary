@@ -30,7 +30,7 @@
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HyZ-3a-vR6" userLabel="New Thought - Pan Area">
-                    <rect key="frame" x="0.0" y="20" width="375" height="64"/>
+                    <rect key="frame" x="0.0" y="20" width="375" height="88"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add_drag" translatesAutoresizingMaskIntoConstraints="NO" id="GXH-AG-5t2">
                             <rect key="frame" x="165.5" y="0.0" width="44" height="44"/>
@@ -40,15 +40,22 @@
                             </constraints>
                         </imageView>
                     </subviews>
-                    <color key="backgroundColor" cyan="0.56582031249999998" magenta="0.0" yellow="0.45708705357142859" black="0.0" alpha="1" colorSpace="custom" customColorSpace="genericCMYKColorSpace"/>
+                    <color key="backgroundColor" cyan="0.56582031249999998" magenta="0.0" yellow="0.45708705357142859" black="0.0" alpha="0.24722161091549297" colorSpace="custom" customColorSpace="genericCMYKColorSpace"/>
                     <gestureRecognizers/>
                     <constraints>
                         <constraint firstItem="GXH-AG-5t2" firstAttribute="centerX" secondItem="HyZ-3a-vR6" secondAttribute="centerX" id="6h0-15-9wK"/>
-                        <constraint firstAttribute="height" constant="64" id="YIr-o4-Ul6"/>
+                        <constraint firstAttribute="height" constant="88" id="YIr-o4-Ul6"/>
                         <constraint firstItem="GXH-AG-5t2" firstAttribute="top" secondItem="HyZ-3a-vR6" secondAttribute="top" id="zQH-ZV-6ds"/>
                     </constraints>
                     <connections>
                         <outletCollection property="gestureRecognizers" destination="eKF-t0-1Rg" appends="YES" id="vvo-Va-ze3"/>
+                    </connections>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FnM-Ie-YeR" userLabel="Dismiss Thought - Pan Area">
+                    <rect key="frame" x="0.0" y="108" width="375" height="559"/>
+                    <color key="backgroundColor" cyan="0.0" magenta="0.0" yellow="1" black="0.0" alpha="0.25291593309859156" colorSpace="custom" customColorSpace="genericCMYKColorSpace"/>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="lNQ-tg-LOI" appends="YES" id="iTS-LP-0Ex"/>
                     </connections>
                 </view>
             </subviews>
@@ -56,17 +63,18 @@
             <gestureRecognizers/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="HyZ-3a-vR6" secondAttribute="trailing" id="Dgq-33-uVB"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="FnM-Ie-YeR" secondAttribute="bottom" id="E5Z-BJ-Vwq"/>
                 <constraint firstItem="HyZ-3a-vR6" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="G8n-sj-JF3"/>
                 <constraint firstItem="HyZ-3a-vR6" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="PI2-xc-3Ep"/>
                 <constraint firstItem="nDE-J0-0yV" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="32" id="TtT-3L-0kC"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="nDE-J0-0yV" secondAttribute="bottom" constant="16" id="Wcz-XG-oAF"/>
+                <constraint firstItem="FnM-Ie-YeR" firstAttribute="top" secondItem="HyZ-3a-vR6" secondAttribute="bottom" id="XL2-pC-zRm"/>
+                <constraint firstItem="FnM-Ie-YeR" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="ekW-Xb-M8a"/>
                 <constraint firstItem="nDE-J0-0yV" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="fYd-SD-5Qz"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="FnM-Ie-YeR" secondAttribute="trailing" id="oCl-lq-VP7"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="nDE-J0-0yV" secondAttribute="trailing" constant="16" id="xWA-Qz-ZHv"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <connections>
-                <outletCollection property="gestureRecognizers" destination="lNQ-tg-LOI" appends="YES" id="kiC-ax-OHM"/>
-            </connections>
         </view>
         <panGestureRecognizer minimumNumberOfTouches="1" id="lNQ-tg-LOI">
             <connections>

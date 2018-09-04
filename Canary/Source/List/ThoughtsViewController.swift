@@ -147,6 +147,7 @@ extension ThoughtsViewController: EditorDelegate {
     func pannedToDismiss(_ sender: UIPanGestureRecognizer) {
         switch sender.state {
         case .began:
+            print("Creating DISMISS animator")
             // Set up animator for interactive dismissal
             modalViewDismissalAnimator = UIViewPropertyAnimator(duration: 0.4, curve: .easeInOut, animations: {
                 self.actionOverlayView.alpha = 1
@@ -178,16 +179,16 @@ extension ThoughtsViewController: EditorDelegate {
     func pannedToAppear(_ sender: UIPanGestureRecognizer) {
         switch sender.state {
         case .began:
+            print("Creating APPEAR animator")
             // Create animator
             modalViewAppearanceAnimator = UIViewPropertyAnimator(duration: 0.4, curve: .easeInOut, animations: {
-                self.actionOverlayView.alpha = 1
                 self.modalContainerView.transform = CGAffineTransform(translationX: 0, y: 0)
             })
             modalViewAppearanceAnimator?.startAnimation()
             modalViewAppearanceAnimator?.pauseAnimation()
         // TODO: Set up view controller with empty thought
         case .changed:
-            modalViewAppearanceAnimator?.fractionComplete = sender.translation(in: view).y / UIScreen.main.bounds.height
+            modalViewAppearanceAnimator?.fractionComplete = -sender.translation(in: view).y / (UIScreen.main.bounds.height - 64 - 88)
         case .ended:
             modalViewAppearanceAnimator?.continueAnimation(withTimingParameters: nil, durationFactor: 0)
         // TODO: Set up view controller with empty thought
