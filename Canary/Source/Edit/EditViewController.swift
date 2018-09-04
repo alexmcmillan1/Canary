@@ -14,7 +14,11 @@ class EditViewController: UIViewController {
         thoughtId = thought.id
         thoughtContent = thought.content
         self.alreadyExists = alreadyExists
-        textView.text = thought.content
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        textView.text = thoughtContent
     }
     
     @IBAction private func tappedClose(_ sender: Any) {

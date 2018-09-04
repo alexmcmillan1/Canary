@@ -92,6 +92,7 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
         let thought = items[indexPath.row]
         let editViewController = EditViewController()
         editViewController.setup(thought, alreadyExists: true)
+        present(editViewController, animated: true)
     }
     
     @objc private func tappedAdd() {
@@ -101,6 +102,7 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
     private func presentInputViewController() {
         let editViewController = EditViewController()
         editViewController.setup()
+        present(editViewController, animated: true)
     }
     
     private func checkEmptyState() {
