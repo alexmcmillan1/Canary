@@ -74,8 +74,6 @@
 			children = (
 				FA5B26A42139CC8F006043D4 /* EditViewController.swift */,
 				FA5B26A82139CCAD006043D4 /* EditView.xib */,
-				FA77BB38213B4D4C00C8DEAC /* EmptyViewController.swift */,
-				FA77BB36213B3AA000C8DEAC /* EmptyView.xib */,
 			);
 			path = Edit;
 			sourceTree = "<group>";
@@ -83,6 +81,7 @@
 		FAA90226213752BF001A1CB1 /* List */ = {
 			isa = PBXGroup;
 			children = (
+				FAD2F2FE213F48E90024EA9B /* EmptyState */,
 				FA1500C72135D3ED0000E491 /* ThoughtsViewController.swift */,
 				FA1500CD2135E90B0000E491 /* ThoughtTableViewCell.swift */,
 				FA1500CE2135E90B0000E491 /* ThoughtTableViewCell.xib */,
@@ -136,6 +135,15 @@
 				FAA90227213752DD001A1CB1 /* Models */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		FAD2F2FE213F48E90024EA9B /* EmptyState */ = {
+			isa = PBXGroup;
+			children = (
+				FA77BB38213B4D4C00C8DEAC /* EmptyViewController.swift */,
+				FA77BB36213B3AA000C8DEAC /* EmptyView.xib */,
+			);
+			path = EmptyState;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

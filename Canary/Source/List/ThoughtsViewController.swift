@@ -9,7 +9,6 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     private var items: [Thought] = []
     private var tableView: UITableView!
-    private var editViewController: EditViewController?
     private var emptyView: UIView!
     
     override func viewDidLoad() {
@@ -90,7 +89,9 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        let thought = items[indexPath.row]
+        let editViewController = EditViewController()
+        editViewController.setup(thought, alreadyExists: true)
     }
     
     @objc private func tappedAdd() {
@@ -98,7 +99,8 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     private func presentInputViewController() {
-        
+        let editViewController = EditViewController()
+        editViewController.setup()
     }
     
     private func checkEmptyState() {
