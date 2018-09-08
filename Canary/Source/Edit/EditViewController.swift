@@ -1,92 +1,44 @@
 import UIKit
 import RealmSwift
 
-protocol EditViewControllerProtocol: class {
-    func executeLogic()
-}
-
-class EditViewController: UIViewController, UITextViewDelegate {
+class EditViewController: UIViewController {
     
-    private var thoughtId: String!
-    private var initialText: String!
-    private var priorImminentAction: EditAction = .Cancel
-    private var imminentAction: EditAction = .Cancel
-    
-    private var willSave: Bool = false
-    private var willDelete: Bool = false
-    
+    private var id: String?
+    private var text: String?
     weak var delegate: EditorDelegate?
-    
-    @IBOutlet var dismissPanGestureRecognizer: UIPanGestureRecognizer!
-    
-    @IBOutlet var appearPanGestureRecognizer: UIPanGestureRecognizer!
-    
     
     @IBOutlet weak private var textView: UITextView!
     
-    func setup(_ thought: Thought) {
-        thoughtId = thought.id
-        initialText = thought.content
-        textView.text = initialText
-        textView.delegate = self
+    convenience init(id: String? = nil, text: String? = nil) {
+        self.init(nibName: "EditView", bundle: Bundle.main)
+        self.id = id
+        self.text = text
+        modalPresentationStyle = .overCurrentContext
+        view.backgroundColor = .clear
+        view.isOpaque = false
     }
     
-    func shouldSave(modifiedText: String) -> Bool {
-        return (initialText.isEmpty && !modifiedText.isEmpty) || (!initialText.isEmpty && initialText != modifiedText && !modifiedText.isEmpty)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        textView.text = text
     }
     
-    func shouldDelete(modifiedText: String) -> Bool {
-        return !initialText.isEmpty && modifiedText.isEmpty
-    }
-
-    @IBAction func didPanToDismiss(_ sender: Any) {
+    @IBAction private func tappedClose(_ sender: Any) {
         textView.resignFirstResponder()
-        if let panGestureRecognizer = sender as? UIPanGestureRecognizer {
-            delegate?.pannedToDismiss(panGestureRecognizer)
-        }
+        
+        let resolvedId = id ?? UUID().uuidString
+        saveThought(id: resolvedId, content: textView.text)
+        
+        delegate?.tappedClose()
+        dismiss(animated: true)
     }
     
-    @IBAction func didPanToAppear(_ sender: Any) {
-        if let panGestureRecognizer = sender as? UIPanGestureRecognizer {
-            delegate?.pannedToAppear(panGestureRecognizer)
-        }
-    }
-    
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        let finalText = (textView.text as NSString).replacingCharacters(in: range, with: text)
-        
-        willSave = self.shouldSave(modifiedText: finalText)
-        willDelete = self.shouldDelete(modifiedText: finalText)
-        
-        imminentAction = willSave ? .Save : willDelete ? .Delete : .Cancel
-        
-        if priorImminentAction != imminentAction {
-            delegate?.imminentActionChanged(imminentAction)
-        }
-        
-        priorImminentAction = imminentAction
-        
-        return true
-    }
-}
-
-extension EditViewController: EditViewControllerProtocol {
-    
-    func executeLogic() {
-        textView.resignFirstResponder()
-
+    private func saveThought(id: String, content: String) {
         let realm = try! Realm()
-        
         try! realm.write {
-            let thought = Thought.create(textView.text)
-            thought.id = thoughtId
-            if willSave {
-                realm.add(thought)
-            } else if willDelete {
-                realm.delete(thought)
-            }
+            let thought = Thought.create(id: id, content: content)
+            realm.add(thought, update: true)
         }
-        
-        delegate?.refreshData()
     }
+    
 }

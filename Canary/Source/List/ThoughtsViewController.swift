@@ -1,63 +1,46 @@
 import UIKit
 import RealmSwift
 
-enum EditAction {
-    case Save
-    case Delete
-    case Cancel
-}
-
 protocol EditorDelegate: class {
-    func pannedToDismiss(_ sender: UIPanGestureRecognizer)
-    func pannedToAppear(_ sender: UIPanGestureRecognizer)
     func tappedClose()
-    func refreshData()
-    func imminentActionChanged(_ action: EditAction)
 }
 
 class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    var animator: UIViewPropertyAnimator?
+    let visualEffectView = UIVisualEffectView(effect: nil)
+    
     private var items: [Thought] = []
     private var tableView: UITableView!
-    private var modalContainerView: UIView!
-    private var editViewController: EditViewController?
     private var emptyView: UIView!
-    private var actionOverlayView: ActionOverlayView!
-    
-    private var modalViewAppearanceAnimator: UIViewPropertyAnimator?
-    private var modalViewDismissalAnimator: UIViewPropertyAnimator?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         edgesForExtendedLayout = []
-        setupTableView()
-        setupEmptyView()
-        setupEditView()
-        setupActionOverlayView()
-        setupNavigationBar()
-    }
-    
-    private func setupTableView() {
+        
         tableView = createTableView()
         view.addSubview(tableView)
-    }
-    
-    private func setupEmptyView() {
+        
         emptyView = EmptyViewController().view
         view.addSubview(emptyView)
         constrainEmptyView()
-    }
-    
-    private func setupEditView() {
-        modalContainerView = createModalContainerView()
-        view.addSubview(modalContainerView)
-        constrainModalContainerView()
-    }
-    
-    private func setupActionOverlayView() {
-        actionOverlayView = ActionOverlayView()
-        modalContainerView.addSubview(actionOverlayView)
-        constrainActionOverlayView()
+        
+        setupNavigationBar()
+        
+        view.addSubview(visualEffectView)
+        visualEffectView.isUserInteractionEnabled = false
+        visualEffectView.translatesAutoresizingMaskIntoConstraints = false
+        visualEffectView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        visualEffectView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        visualEffectView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        visualEffectView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        
+        animator = UIViewPropertyAnimator(duration: 4.0, curve: .linear, animations: {
+            self.visualEffectView.effect = UIBlurEffect(style: .light)
+        })
+        
+        animator?.startAnimation()
+        animator?.pauseAnimation()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,6 +58,24 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
     private func getItems() -> [Thought] {
         let realm = try! Realm()
         return realm.objects(Thought.self).map { $0 }
+    }
+    
+    private func createTableView() -> UITableView {
+        let tableView = UITableView(frame: UIScreen.main.bounds)
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.rowHeight = 64
+        tableView.separatorStyle = .none
+        tableView.register(UINib(nibName: "ThoughtTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: ThoughtTableViewCell.reuseIdentifier)
+        return tableView
+    }
+    
+    private func constrainEmptyView() {
+        emptyView.translatesAutoresizingMaskIntoConstraints = false
+        emptyView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        emptyView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        emptyView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        emptyView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -106,24 +107,14 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        editViewController?.setup(items[indexPath.row])
-        
-        let springAnimator = UIViewPropertyAnimator(duration: 0.5, dampingRatio: 0.9) {
-            self.modalContainerView.transform = .identity
-        }
-        springAnimator.startAnimation()
+        let editViewController = EditViewController(id: items[indexPath.row].id, text: items[indexPath.row].content)
+        present(editViewController, animated: true)
+        animator?.startAnimation()
     }
     
     @objc private func tappedAdd() {
-        presentInputViewController()
-    }
-    
-    private func presentInputViewController() {
-        editViewController?.setup(Thought.create())
-        let springAnimator = UIViewPropertyAnimator(duration: 0.5, dampingRatio: 0.9) {
-            self.modalContainerView.transform = .identity
-        }
-        springAnimator.startAnimation()
+        let editViewController = EditViewController()
+        present(editViewController, animated: true)
     }
     
     private func checkEmptyState() {
@@ -133,150 +124,5 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
     private func showEmptyState(_ show: Bool) {
         tableView.isHidden = show
         emptyView.isHidden = !show
-    }
-}
-
-extension ThoughtsViewController: EditorDelegate {
-    
-    func tappedClose() {
-        UIViewPropertyAnimator(duration: 0.5, curve: .easeInOut) {
-            self.modalContainerView.transform = self.modalContainerView.transform.translatedBy(x: 0, y: UIScreen.main.bounds.height)
-        }.startAnimation()
-    }
-    
-    func pannedToDismiss(_ sender: UIPanGestureRecognizer) {
-        switch sender.state {
-        case .began:
-            print("Creating DISMISS animator")
-            // Set up animator for interactive dismissal
-            modalViewDismissalAnimator = UIViewPropertyAnimator(duration: 0.4, curve: .easeInOut, animations: {
-                self.actionOverlayView.alpha = 1
-                self.modalContainerView.transform = CGAffineTransform(translationX: 0, y: UIScreen.main.bounds.height)
-            })
-            modalViewDismissalAnimator?.startAnimation()
-            modalViewDismissalAnimator?.pauseAnimation()
-        case .changed:
-            modalViewDismissalAnimator?.fractionComplete = sender.translation(in: view).y / UIScreen.main.bounds.height
-        case .ended:
-            let velocity = sender.velocity(in: view)
-//            let halfComplete = (modalViewDismissalAnimator?.fractionComplete ?? 1) >= 0.5
-            
-            let reversed = velocity.y < 50 || (modalViewDismissalAnimator?.fractionComplete ?? 1) < 0.5
-            
-            modalViewDismissalAnimator?.isReversed = reversed
-            modalViewDismissalAnimator?.continueAnimation(withTimingParameters: nil, durationFactor: 0)
-            
-            if !reversed {
-                // Animation has proceeded: execute the action
-                editViewController?.executeLogic()
-            }
-            
-        default:
-            return
-        }
-    }
-    
-    func pannedToAppear(_ sender: UIPanGestureRecognizer) {
-        switch sender.state {
-        case .began:
-            print("Creating APPEAR animator")
-            // Create animator
-            modalViewAppearanceAnimator = UIViewPropertyAnimator(duration: 0.4, curve: .easeInOut, animations: {
-                self.modalContainerView.transform = CGAffineTransform(translationX: 0, y: 0)
-            })
-            modalViewAppearanceAnimator?.startAnimation()
-            modalViewAppearanceAnimator?.pauseAnimation()
-        // TODO: Set up view controller with empty thought
-        case .changed:
-            modalViewAppearanceAnimator?.fractionComplete = -sender.translation(in: view).y / (UIScreen.main.bounds.height - 64 - 88)
-        case .ended:
-            modalViewAppearanceAnimator?.continueAnimation(withTimingParameters: nil, durationFactor: 0)
-        // TODO: Set up view controller with empty thought
-        default:
-            return
-        }
-    }
-    
-    func refreshData() {
-        actionOverlayView.alpha = 0
-        items = getItems()
-        checkEmptyState()
-        tableView.reloadData()
-    }
-    
-    func imminentActionChanged(_ action: EditAction) {
-        switch action {
-        case .Save:
-            actionOverlayView.image = #imageLiteral(resourceName: "save")
-        case .Cancel:
-            actionOverlayView.image = #imageLiteral(resourceName: "delete_cancel")
-        case .Delete:
-            actionOverlayView.image = #imageLiteral(resourceName: "delete_cancel")
-        }
-    }
-}
-
-extension ThoughtsViewController {
-    
-    // MARK: Creating subviews
-    
-    private func createTableView() -> UITableView {
-        let tableView = UITableView(frame: UIScreen.main.bounds)
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.rowHeight = 64
-        tableView.separatorStyle = .none
-        tableView.register(UINib(nibName: "ThoughtTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: ThoughtTableViewCell.reuseIdentifier)
-        return tableView
-    }
-    
-    private func createModalContainerView() -> UIView {
-        let modalContainerView = UIView()
-        
-        editViewController = EditViewController()
-        editViewController?.delegate = self
-        
-        modalContainerView.addSubview(editViewController!.view)
-        editViewController?.view.translatesAutoresizingMaskIntoConstraints = false
-        editViewController?.view.leadingAnchor.constraint(equalTo: modalContainerView.leadingAnchor).isActive = true
-        editViewController?.view.trailingAnchor.constraint(equalTo: modalContainerView.trailingAnchor).isActive = true
-        editViewController?.view.bottomAnchor.constraint(equalTo: modalContainerView.bottomAnchor).isActive = true
-        editViewController?.view.topAnchor.constraint(equalTo: modalContainerView.topAnchor).isActive = true
-        
-        print("modal y is \(modalContainerView.frame.minX)")
-        print("screen height is \(UIScreen.main.bounds.height)")
-        
-        modalContainerView.transform = modalContainerView.transform.translatedBy(x: 0, y: UIScreen.main.bounds.height - 64 - 88)
-        
-        return modalContainerView
-    }
-}
-
-extension ThoughtsViewController {
-    
-    // MARK: Constraining subviews
-    
-    private func constrainModalContainerView() {
-        modalContainerView.translatesAutoresizingMaskIntoConstraints = false
-        modalContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        modalContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        modalContainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        modalContainerView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-    }
-    
-    private func constrainEmptyView() {
-        emptyView.translatesAutoresizingMaskIntoConstraints = false
-        emptyView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        emptyView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        emptyView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        emptyView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-    }
-    
-    private func constrainActionOverlayView() {
-        actionOverlayView.translatesAutoresizingMaskIntoConstraints = false
-        actionOverlayView.leadingAnchor.constraint(equalTo: modalContainerView.leadingAnchor).isActive = true
-        actionOverlayView.trailingAnchor.constraint(equalTo: modalContainerView.trailingAnchor).isActive = true
-        actionOverlayView.bottomAnchor.constraint(equalTo: modalContainerView.bottomAnchor).isActive = true
-        actionOverlayView.topAnchor.constraint(equalTo: modalContainerView.topAnchor).isActive = true
     }
 }

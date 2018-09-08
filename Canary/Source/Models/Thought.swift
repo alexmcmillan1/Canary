@@ -9,9 +9,9 @@ class Thought: Object {
         return "id"
     }
     
-    static func create(_ content: String = "") -> Thought {
+    static func create(id: String, content: String) -> Thought {
         let temp = Thought()
-        temp.id = UUID().uuidString
+        temp.id = id
         temp.content = content
         return temp
     }
