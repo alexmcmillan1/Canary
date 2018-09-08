@@ -4,19 +4,23 @@ PODS:
   - Realm/Headers (3.7.6)
   - RealmSwift (3.7.6):
     - Realm (= 3.7.6)
+  - TinyConstraints (3.2.0)
 
 DEPENDENCIES:
   - RealmSwift
+  - TinyConstraints
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Realm
     - RealmSwift
+    - TinyConstraints
 
 SPEC CHECKSUMS:
   Realm: 9eaecad54712d6246d08ba34c10f354e4715d7d3
   RealmSwift: 1fe08b4ebaeeaacf17f9ba0343f7b25c9fc31fa6
+  TinyConstraints: aa45fdc7e4b7a0e9081993935a6a11a814dd3ec5
 
-PODFILE CHECKSUM: 0ff2d5a4c532cdbd4662bbd6479c661307644d15
+PODFILE CHECKSUM: 21727eddb308c1aa90903afc74d34e4719ea232a
 
 COCOAPODS: 1.5.3

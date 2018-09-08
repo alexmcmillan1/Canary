@@ -7,6 +7,9 @@ protocol EditorDelegate: class {
 
 class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    var animator: UIViewPropertyAnimator?
+    let visualEffectView = UIVisualEffectView(effect: nil)
+    
     private var items: [Thought] = []
     private var tableView: UITableView!
     private var emptyView: UIView!
@@ -23,6 +26,21 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
         constrainEmptyView()
         
         setupNavigationBar()
+        
+        view.addSubview(visualEffectView)
+        visualEffectView.isUserInteractionEnabled = false
+        visualEffectView.translatesAutoresizingMaskIntoConstraints = false
+        visualEffectView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        visualEffectView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        visualEffectView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        visualEffectView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        
+        animator = UIViewPropertyAnimator(duration: 4.0, curve: .linear, animations: {
+            self.visualEffectView.effect = UIBlurEffect(style: .light)
+        })
+        
+        animator?.startAnimation()
+        animator?.pauseAnimation()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -89,19 +107,13 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let thought = items[indexPath.row]
-        let editViewController = EditViewController()
-        editViewController.setup(thought, alreadyExists: true)
+        let editViewController = EditViewController(id: items[indexPath.row].id, text: items[indexPath.row].content)
         present(editViewController, animated: true)
+        animator?.startAnimation()
     }
     
     @objc private func tappedAdd() {
-        presentInputViewController()
-    }
-    
-    private func presentInputViewController() {
         let editViewController = EditViewController()
-        editViewController.setup()
         present(editViewController, animated: true)
     }
     

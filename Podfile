@@ -6,5 +6,6 @@ target 'Canary' do
 
   # Pods for Canary
   pod 'RealmSwift'
+  pod 'TinyConstraints'
 
 end

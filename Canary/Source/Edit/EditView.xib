@@ -38,7 +38,6 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="0.96634935992104665" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Ygz-h8-2oZ" secondAttribute="trailing" constant="16" id="5Ij-uk-ylj"/>
                 <constraint firstItem="Ygz-h8-2oZ" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="16" id="AF0-eJ-u7G"/>
