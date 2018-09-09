@@ -1,14 +1,12 @@
 import UIKit
 import RealmSwift
+import TinyConstraints
 
 protocol EditorDelegate: class {
     func tappedClose()
 }
 
 class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
-    var animator: UIViewPropertyAnimator?
-    let visualEffectView = UIVisualEffectView(effect: nil)
     
     private var items: [Thought] = []
     private var tableView: UITableView!
@@ -17,30 +15,27 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         edgesForExtendedLayout = []
-        
+
         tableView = createTableView()
         view.addSubview(tableView)
+        tableView.edgesToSuperview()
         
         emptyView = EmptyViewController().view
         view.addSubview(emptyView)
-        constrainEmptyView()
+        emptyView.edgesToSuperview()
+
+        let addButton = UIButton()
+        addButton.backgroundColor = UIColor(white: 0.95, alpha: 0.8)
+        addButton.setImage(UIImage(named: "paper"), for: .normal)
+        addButton.imageView?.tintColor = .darkGray
+        addButton.addTarget(self, action: #selector(tappedAdd), for: .touchUpInside)
+        view.addSubview(addButton)
+        addButton.layer.cornerRadius = 30
+        addButton.size(CGSize(width: 60, height: 60))
+        addButton.bottomToSuperview(offset: -32)
+        addButton.centerXToSuperview()
         
         setupNavigationBar()
-        
-        view.addSubview(visualEffectView)
-        visualEffectView.isUserInteractionEnabled = false
-        visualEffectView.translatesAutoresizingMaskIntoConstraints = false
-        visualEffectView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        visualEffectView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        visualEffectView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        visualEffectView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        
-        animator = UIViewPropertyAnimator(duration: 4.0, curve: .linear, animations: {
-            self.visualEffectView.effect = UIBlurEffect(style: .light)
-        })
-        
-        animator?.startAnimation()
-        animator?.pauseAnimation()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,8 +46,7 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     private func setupNavigationBar() {
-        navigationItem.title = "Thoughts"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(tappedAdd))
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     private func getItems() -> [Thought] {
@@ -61,21 +55,13 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     private func createTableView() -> UITableView {
-        let tableView = UITableView(frame: UIScreen.main.bounds)
+        let tableView = UITableView()
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = 64
         tableView.separatorStyle = .none
         tableView.register(UINib(nibName: "ThoughtTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: ThoughtTableViewCell.reuseIdentifier)
         return tableView
-    }
-    
-    private func constrainEmptyView() {
-        emptyView.translatesAutoresizingMaskIntoConstraints = false
-        emptyView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        emptyView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        emptyView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        emptyView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -102,14 +88,12 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
                 self?.checkEmptyState()
             }
         }
-        
         return [delete]
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let editViewController = EditViewController(id: items[indexPath.row].id, text: items[indexPath.row].content)
         present(editViewController, animated: true)
-        animator?.startAnimation()
     }
     
     @objc private func tappedAdd() {

@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.13.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.9"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditViewController" customModule="Canary" customModuleProvider="target">
             <connections>
+                <outlet property="closeButton" destination="Ygz-h8-2oZ" id="dup-2S-Ufn"/>
                 <outlet property="textView" destination="nDE-J0-0yV" id="CLs-26-42B"/>
                 <outlet property="view" destination="iN0-l3-epB" id="TWG-s6-rsK"/>
             </connections>
@@ -21,9 +22,10 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Body" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nDE-J0-0yV">
-                    <rect key="frame" x="16" y="36" width="343" height="615"/>
-                    <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="20"/>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nDE-J0-0yV">
+                    <rect key="frame" x="16" y="80" width="343" height="571"/>
+                    <string key="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
+                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="16"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ygz-h8-2oZ">
@@ -32,24 +34,27 @@
                         <constraint firstAttribute="height" constant="44" id="DCv-1T-aun"/>
                         <constraint firstAttribute="width" constant="44" id="Eql-ws-JiL"/>
                     </constraints>
-                    <state key="normal" image="baseline_check_black_36pt"/>
+                    <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" image="cross"/>
                     <connections>
                         <action selector="tappedClose:" destination="-1" eventType="touchUpInside" id="3Qc-dq-pnF"/>
                     </connections>
                 </button>
             </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Ygz-h8-2oZ" secondAttribute="trailing" constant="16" id="5Ij-uk-ylj"/>
                 <constraint firstItem="Ygz-h8-2oZ" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="16" id="AF0-eJ-u7G"/>
-                <constraint firstItem="nDE-J0-0yV" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="16" id="TtT-3L-0kC"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="nDE-J0-0yV" secondAttribute="bottom" constant="16" id="Wcz-XG-oAF"/>
                 <constraint firstItem="nDE-J0-0yV" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="fYd-SD-5Qz"/>
+                <constraint firstItem="nDE-J0-0yV" firstAttribute="top" secondItem="Ygz-h8-2oZ" secondAttribute="bottom" id="p8s-lj-Ier"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="nDE-J0-0yV" secondAttribute="trailing" constant="16" id="xWA-Qz-ZHv"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="33.5" y="53.5"/>
         </view>
     </objects>
     <resources>
-        <image name="baseline_check_black_36pt" width="36" height="36"/>
+        <image name="cross" width="48" height="48"/>
     </resources>
 </document>

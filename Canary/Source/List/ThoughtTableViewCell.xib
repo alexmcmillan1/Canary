@@ -22,12 +22,12 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="K6n-NQ-mf6">
                         <rect key="frame" x="16" y="12" width="288" height="20.5"/>
                         <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="18"/>
-                        <color key="textColor" red="0.10731055699481862" green="0.10731055699481862" blue="0.10731055699481862" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="textColor" red="0.082352941176470587" green="0.094117647058823528" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pPb-dx-hXo">
                         <rect key="frame" x="16" y="43" width="304" height="1"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.082352941176470587" green="0.094117647058823528" blue="0.13333333333333333" alpha="0.1014799735915493" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="QyO-dS-d7E"/>
                         </constraints>
