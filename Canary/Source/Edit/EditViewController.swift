@@ -9,6 +9,7 @@ class EditViewController: UIViewController {
     
     @IBOutlet weak private var textView: UITextView!    
     @IBOutlet weak private var closeButton: CircleImageButton!
+    @IBOutlet weak private var textViewBottomConstraint: NSLayoutConstraint!
     
     convenience init(id: String? = nil, text: String? = nil) {
         self.init(nibName: "EditView", bundle: Bundle.main)
@@ -20,11 +21,16 @@ class EditViewController: UIViewController {
         super.viewDidLoad()
         textView.text = text
         textView.delegate = self
+        
+        closeButton.size(CGSize(width: 44, height: 44))
+        closeButton.layer.cornerRadius = 22
+        
+        registerForNotifications()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        textView.becomeFirstResponder()
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        deregisterFromNotifications()
     }
     
     @IBAction private func tappedClose(_ sender: Any) {
@@ -93,5 +99,24 @@ extension EditViewController: UITextViewDelegate {
         }
         
         return true
+    }
+}
+
+extension EditViewController {
+    
+    private func registerForNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: .UIKeyboardWillShow, object: nil)
+    }
+    
+    private func deregisterFromNotifications() {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            let keyboardHeight = keyboardSize.height
+            print(keyboardHeight)
+            textViewBottomConstraint.constant = keyboardHeight
+        }
     }
 }
