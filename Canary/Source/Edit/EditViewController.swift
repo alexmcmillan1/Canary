@@ -32,19 +32,16 @@ class EditViewController: UIViewController {
     @IBAction private func tappedClose(_ sender: Any) {
         textView.resignFirstResponder()
         
-        // if text !empty, text view empty >>> delete
-        // if text empty, text view empty >>> dismiss
-        
-        if text != nil {
-            if textView.text.isEmpty {
-                if let id = id {
-                    deleteThought(id: id)
-                }
-            } else {
-                // save thought
-                let id = self.id ?? UUID().uuidString
-                saveThought(id: id, content: textView.text)
-            }
+        if text == nil && !textView.text.isEmpty {
+            // save as new
+            let id = UUID().uuidString
+            saveThought(id: id, content: textView.text)
+        } else if let id = id, text != nil && textView.text != text {
+            // save as modified
+            saveThought(id: id, content: textView.text)
+        } else if let id = id, text != nil && textView.text.isEmpty {
+            // delete
+            deleteThought(id: id)
         }
         
         delegate?.tappedClose()
