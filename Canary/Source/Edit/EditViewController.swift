@@ -8,7 +8,7 @@ class EditViewController: UIViewController {
     weak var delegate: EditorDelegate?
     
     @IBOutlet weak private var textView: UITextView!    
-    @IBOutlet weak private var closeButton: UIButton!
+    @IBOutlet weak private var closeButton: CircleImageButton!
     
     convenience init(id: String? = nil, text: String? = nil) {
         self.init(nibName: "EditView", bundle: Bundle.main)
@@ -20,8 +20,6 @@ class EditViewController: UIViewController {
         super.viewDidLoad()
         textView.text = text
         textView.delegate = self
-        textView.textColor = .appBlue
-        view.backgroundColor = .appYellowLight
     }
     
     override func viewDidAppear(_ animated: Bool) {
