@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		539A137ED8B260307F631712 /* Pods_Canary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A59E91F1E1616AC26096F2A9 /* Pods_Canary.framework */; };
+		917145002146D44A00C5A0B0 /* CircleImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917144FF2146D44A00C5A0B0 /* CircleImageButton.swift */; };
 		FA1500C62135C5980000E491 /* Thought.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1500C52135C5980000E491 /* Thought.swift */; };
 		FA1500C82135D3ED0000E491 /* ThoughtsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1500C72135D3ED0000E491 /* ThoughtsViewController.swift */; };
 		FA1500CF2135E90B0000E491 /* ThoughtTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1500CD2135E90B0000E491 /* ThoughtTableViewCell.swift */; };
@@ -35,6 +36,7 @@
 
 /* Begin PBXFileReference section */
 		5C66E27C16E64F6C5DECC5B3 /* Pods-Canary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Canary.release.xcconfig"; path = "Pods/Target Support Files/Pods-Canary/Pods-Canary.release.xcconfig"; sourceTree = "<group>"; };
+		917144FF2146D44A00C5A0B0 /* CircleImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImageButton.swift; sourceTree = "<group>"; };
 		A59E91F1E1616AC26096F2A9 /* Pods_Canary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Canary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBB6123A1F8362367E33BFE8 /* Pods-Canary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Canary.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Canary/Pods-Canary.debug.xcconfig"; sourceTree = "<group>"; };
 		FA1500C52135C5980000E491 /* Thought.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thought.swift; sourceTree = "<group>"; };
@@ -90,6 +92,14 @@
 				5C66E27C16E64F6C5DECC5B3 /* Pods-Canary.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		917144FE2146D43900C5A0B0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				917144FF2146D44A00C5A0B0 /* CircleImageButton.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		FA5B26A72139CC9C006043D4 /* Edit */ = {
@@ -167,6 +177,7 @@
 				FA5B26A72139CC9C006043D4 /* Edit */,
 				FAA90226213752BF001A1CB1 /* List */,
 				FAA90227213752DD001A1CB1 /* Models */,
+				917144FE2146D43900C5A0B0 /* Views */,
 				FAA167A321451B07009FCA14 /* UIColor+Custom.swift */,
 			);
 			path = Source;
@@ -356,6 +367,7 @@
 				FAA167A421451B07009FCA14 /* UIColor+Custom.swift in Sources */,
 				FA1500C82135D3ED0000E491 /* ThoughtsViewController.swift in Sources */,
 				FA77BB39213B4D4C00C8DEAC /* EmptyViewController.swift in Sources */,
+				917145002146D44A00C5A0B0 /* CircleImageButton.swift in Sources */,
 				FA1500C62135C5980000E491 /* Thought.swift in Sources */,
 				FA5B26A52139CC8F006043D4 /* EditViewController.swift in Sources */,
 				FA1500CF2135E90B0000E491 /* ThoughtTableViewCell.swift in Sources */,

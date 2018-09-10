@@ -24,14 +24,9 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
         view.addSubview(emptyView)
         emptyView.edgesToSuperview()
 
-        let addButton = UIButton()
-        addButton.backgroundColor = UIColor(white: 0.95, alpha: 0.8)
-        addButton.setImage(UIImage(named: "paper"), for: .normal)
-        addButton.imageView?.tintColor = .darkGray
+        let addButton = CircleImageButton(UIImage(named: "paper"))
         addButton.addTarget(self, action: #selector(tappedAdd), for: .touchUpInside)
         view.addSubview(addButton)
-        addButton.layer.cornerRadius = 30
-        addButton.size(CGSize(width: 60, height: 60))
         addButton.bottomToSuperview(offset: -32)
         addButton.centerXToSuperview()
         
