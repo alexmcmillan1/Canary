@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EmptyViewController" customModule="Canary" customModuleProvider="target">
             <connections>
+                <outlet property="label" destination="dK3-6P-WA3" id="IJD-Mt-7uY"/>
                 <outlet property="view" destination="iN0-l3-epB" id="iKK-Ad-Dut"/>
             </connections>
         </placeholder>
@@ -20,16 +21,16 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dream something up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dK3-6P-WA3">
-                    <rect key="frame" x="104" y="534" width="167.5" height="21"/>
-                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
-                    <color key="textColor" white="0.85248325892857146" alpha="1" colorSpace="calibratedWhite"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prompt" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dK3-6P-WA3">
+                    <rect key="frame" x="158" y="536" width="60.5" height="25"/>
+                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
+                    <color key="textColor" red="0.77685393227471244" green="0.77685393227471244" blue="0.77685393227471244" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <constraints>
                 <constraint firstItem="dK3-6P-WA3" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="aIK-wD-4XW"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="dK3-6P-WA3" secondAttribute="bottom" constant="112" id="q8P-km-7lc"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="dK3-6P-WA3" secondAttribute="bottom" constant="106" id="q8P-km-7lc"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
         </view>
