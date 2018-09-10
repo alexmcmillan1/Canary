@@ -1,3 +1,4 @@
 import UIKit
 
-class EmptyViewController: UIViewController { }
+class EmptyViewController: UIViewController {
+}

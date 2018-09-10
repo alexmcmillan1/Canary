@@ -72,7 +72,7 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { [weak self] _, indexPath in
+        let delete = UITableViewRowAction(style: .destructive, title: NSLocalizedString("Delete", comment: "")) { [weak self] _, indexPath in
             let realm = try! Realm()
             if let thought = self?.items[indexPath.row] {
                 try! realm.write {
