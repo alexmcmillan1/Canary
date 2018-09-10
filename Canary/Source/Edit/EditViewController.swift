@@ -61,13 +61,37 @@ class EditViewController: UIViewController {
             realm.delete(thought)
         }
     }
+    
+    private func animateCloseButton(image: UIImage?) {
+        let animator = UIViewPropertyAnimator(duration: 0.1, curve: .easeInOut) {
+            self.closeButton.transform = self.closeButton.transform.scaledBy(x: 0.9, y: 0.9)
+        }
+        
+        let secondAnimator = UIViewPropertyAnimator(duration: 0.4, dampingRatio: 0.5) {
+            self.closeButton.transform = .identity
+        }
+        
+        animator.addCompletion { _ in
+            self.closeButton.setImage(image, for: .normal)
+            secondAnimator.startAnimation()
+        }
+        
+        animator.startAnimation()
+    }
 }
 
 extension EditViewController: UITextViewDelegate {
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
-        closeButton.setImage(newText.isEmpty ? #imageLiteral(resourceName: "cross") : #imageLiteral(resourceName: "check"), for: .normal)
+        
+        let oldImage = closeButton.imageView?.image
+        let newImage = newText.isEmpty ? UIImage(named: "cross") : UIImage(named: "check")
+        
+        if newImage != oldImage {
+            animateCloseButton(image: newImage)
+        }
+        
         return true
     }
 }
