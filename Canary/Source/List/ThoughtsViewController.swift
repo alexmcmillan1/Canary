@@ -11,6 +11,7 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
     private var items: [Thought] = []
     private var tableView: UITableView!
     private var emptyView: UIView!
+    private var addButton: CircleImageButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +25,7 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
         view.addSubview(emptyView)
         emptyView.edgesToSuperview()
 
-        let addButton = CircleImageButton(UIImage(named: "paper"))
+        addButton = CircleImageButton(UIImage(named: "paper"))
         addButton.addTarget(self, action: #selector(tappedAdd), for: .touchUpInside)
         view.addSubview(addButton)
         addButton.bottomToSuperview(offset: -32)
@@ -93,7 +94,24 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     @objc private func tappedAdd() {
         let editViewController = EditViewController()
+        animateAddButton()
         present(editViewController, animated: true)
+    }
+    
+    private func animateAddButton() {
+        let animator = UIViewPropertyAnimator(duration: 0.1, curve: .easeInOut) {
+            self.addButton.transform = self.addButton.transform.scaledBy(x: 0.8, y: 0.8)
+        }
+        
+        let secondAnimator = UIViewPropertyAnimator(duration: 0.4, dampingRatio: 0.5) {
+            self.addButton.transform = .identity
+        }
+        
+        animator.addCompletion { _ in
+            secondAnimator.startAnimation()
+        }
+        
+        animator.startAnimation()
     }
     
     private func checkEmptyState() {
