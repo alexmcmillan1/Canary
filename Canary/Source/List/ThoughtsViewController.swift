@@ -101,7 +101,10 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     private func showEmptyState(_ show: Bool) {
-        tableView.isHidden = show
-        emptyView.isHidden = !show
+        let alpha: CGFloat = show ? 1 : 0
+        UIView.animate(withDuration: 0.5) {
+            self.tableView.alpha = 1 - alpha
+            self.emptyView.alpha = alpha
+        }
     }
 }

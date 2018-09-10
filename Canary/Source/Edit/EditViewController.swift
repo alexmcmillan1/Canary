@@ -21,16 +21,21 @@ class EditViewController: UIViewController {
         super.viewDidLoad()
         textView.text = text
         textView.delegate = self
-        
         closeButton.size(CGSize(width: 44, height: 44))
         closeButton.layer.cornerRadius = 22
-        
         registerForNotifications()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         deregisterFromNotifications()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if textView.text.isEmpty {
+            textView.becomeFirstResponder()
+        }
     }
     
     @IBAction private func tappedClose(_ sender: Any) {
