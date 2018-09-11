@@ -20,7 +20,7 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
     private var emptyView: UIView!
     private var addButton: CircleImageButton!
     private var sortButton: CircleImageButton!
-    private var sortMode = SortMode.dateDescending
+    private var sortMode = SortMode.alphabeticalAscending
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +53,7 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
         super.viewWillAppear(true)
         items = getItems()
         checkEmptyState()
+        sortItems(by: sortMode)
         tableView.reloadData()
     }
     
@@ -142,6 +143,21 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
         UIView.animate(withDuration: 0.5) {
             self.tableView.alpha = 1 - alpha
             self.emptyView.alpha = alpha
+        }
+    }
+    
+    private func sortItems(by: SortMode) {
+        items.sort { (thoughtA, thoughtB) -> Bool in
+            switch by {
+            case .alphabeticalAscending:
+                return thoughtA.content < thoughtB.content
+            case .alphabeticalDescending:
+                return thoughtA.content > thoughtB.content
+            case .dateAscending:
+                return thoughtA.lastUpdated < thoughtB.lastUpdated
+            case .dateDescending:
+                return thoughtA.lastUpdated > thoughtB.lastUpdated
+            }
         }
     }
 }

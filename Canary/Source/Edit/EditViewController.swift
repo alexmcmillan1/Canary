@@ -61,6 +61,7 @@ class EditViewController: UIViewController {
         let realm = try! Realm()
         try! realm.write {
             let thought = Thought.create(id: id, content: content)
+            thought.lastUpdated = Date().timeIntervalSince1970
             realm.add(thought, update: true)
         }
     }

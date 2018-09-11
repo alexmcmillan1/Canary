@@ -4,6 +4,7 @@ class Thought: Object {
     
     @objc dynamic var id = ""
     @objc dynamic var content = ""
+    @objc dynamic var lastUpdated: Double = 0
     
     override static func primaryKey() -> String? {
         return "id"
@@ -13,6 +14,7 @@ class Thought: Object {
         let temp = Thought()
         temp.id = id
         temp.content = content
+        temp.lastUpdated = Date().timeIntervalSince1970
         return temp
     }
 }
