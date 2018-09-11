@@ -6,12 +6,21 @@ protocol EditorDelegate: class {
     func tappedClose()
 }
 
+enum SortMode {
+    case dateDescending
+    case dateAscending
+    case alphabeticalAscending
+    case alphabeticalDescending
+}
+
 class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     private var items: [Thought] = []
     private var tableView: UITableView!
     private var emptyView: UIView!
     private var addButton: CircleImageButton!
+    private var sortButton: CircleImageButton!
+    private var sortMode = SortMode.dateDescending
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +39,12 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
         view.addSubview(addButton)
         addButton.bottomToSuperview(offset: -32)
         addButton.centerXToSuperview()
+        
+        sortButton = CircleImageButton(nil)
+        sortButton.addTarget(self, action: #selector(tappedSort), for: .touchUpInside)
+        view.addSubview(sortButton)
+        sortButton.topToSuperview(offset: 32)
+        sortButton.trailingToSuperview(offset: 32)
         
         setupNavigationBar()
     }
@@ -96,6 +111,10 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
         let editViewController = EditViewController()
         animateAddButton()
         present(editViewController, animated: true)
+    }
+    
+    @objc private func tappedSort() {
+        
     }
     
     private func animateAddButton() {
