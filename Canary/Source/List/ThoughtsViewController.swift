@@ -25,7 +25,7 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
         view.addSubview(emptyView)
         emptyView.edgesToSuperview()
 
-        addButton = CircleImageButton(UIImage(named: "paper"))
+        addButton = CircleImageButton(UIImage(named: "handwrite"))
         addButton.addTarget(self, action: #selector(tappedAdd), for: .touchUpInside)
         view.addSubview(addButton)
         addButton.bottomToSuperview(offset: -32)
