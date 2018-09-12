@@ -25,6 +25,7 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
                                           UIImage(named: "sort_updated_ascending"),
                                           UIImage(named: "sort_alphabetically_ascending"),
                                           UIImage(named: "sort_alphabetically_descending")]
+    private let dateFormatter = ThoughtDateFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,7 +75,7 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
         let tableView = UITableView()
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.rowHeight = 64
+        tableView.rowHeight = 72
         tableView.separatorStyle = .none
         tableView.register(UINib(nibName: "ThoughtTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: ThoughtTableViewCell.reuseIdentifier)
         return tableView
@@ -88,6 +89,8 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ThoughtTableViewCell.reuseIdentifier, for: indexPath) as? ThoughtTableViewCell else {
             fatalError()
         }
+        let date = Date(timeIntervalSince1970: items[indexPath.row].lastUpdated)
+        cell.lastUpdatedLabel.text = dateFormatter.formattedString(from: date)
         cell.mainLabel.text = items[indexPath.row].content
         return cell
     }
