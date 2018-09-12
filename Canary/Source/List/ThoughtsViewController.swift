@@ -21,10 +21,10 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
     private var addButton: CircleImageButton!
     private var sortButton: CircleImageButton!
     private var sortMode = SortMode.dateDescending
-    private var sortImages: [UIImage?] = [UIImage(named: "time"),
-                                          UIImage(named: "time"),
-                                          UIImage(named: "alphabet"),
-                                          UIImage(named: "alphabet")]
+    private var sortImages: [UIImage?] = [UIImage(named: "sort_updated_descending"),
+                                          UIImage(named: "sort_updated_ascending"),
+                                          UIImage(named: "sort_alphabetically_ascending"),
+                                          UIImage(named: "sort_alphabetically_descending")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +44,7 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
         addButton.bottomToSuperview(offset: -32)
         addButton.centerXToSuperview(offset: -40)
         
-        sortButton = CircleImageButton(UIImage(named:"time"))
+        sortButton = CircleImageButton(UIImage(named: "sort_updated_descending"))
         sortButton.addTarget(self, action: #selector(tappedSort), for: .touchUpInside)
         view.addSubview(sortButton)
         sortButton.bottomToSuperview(offset: -32)
