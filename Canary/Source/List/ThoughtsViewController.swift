@@ -42,13 +42,13 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
         addButton.addTarget(self, action: #selector(tappedAdd), for: .touchUpInside)
         view.addSubview(addButton)
         addButton.bottomToSuperview(offset: -32)
-        addButton.centerXToSuperview(offset: -40)
+        addButton.centerXToSuperview()
         
         sortButton = CircleImageButton(UIImage(named: "sort_updated_descending"))
         sortButton.addTarget(self, action: #selector(tappedSort), for: .touchUpInside)
         view.addSubview(sortButton)
-        sortButton.bottomToSuperview(offset: -32)
-        sortButton.centerXToSuperview(offset: 40)
+        sortButton.topToSuperview(offset: 48)
+        sortButton.trailingToSuperview(offset: 16)
         
         setupNavigationBar()
     }

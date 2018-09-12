@@ -20,7 +20,7 @@ class CircleImageButton: UIButton {
     }
     
     private func setup() {
-        backgroundColor = UIColor(white: 0.95, alpha: 0.9)
+        backgroundColor = UIColor(white: 0.95, alpha: 0.8)
         if imageView?.image == nil {
             setImage(image, for: .normal)
         }
