@@ -6,8 +6,8 @@ protocol EditorDelegate: class {
     func tappedClose()
 }
 
-enum SortMode {
-    case dateDescending
+enum SortMode: Int {
+    case dateDescending = 0
     case dateAscending
     case alphabeticalAscending
     case alphabeticalDescending
@@ -20,12 +20,16 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
     private var emptyView: UIView!
     private var addButton: CircleImageButton!
     private var sortButton: CircleImageButton!
-    private var sortMode = SortMode.alphabeticalAscending
+    private var sortMode = SortMode.dateDescending
+    private var sortImages: [UIImage?] = [UIImage(named: "time"),
+                                          UIImage(named: "time"),
+                                          UIImage(named: "alphabet"),
+                                          UIImage(named: "alphabet")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         edgesForExtendedLayout = []
-
+        
         tableView = createTableView()
         view.addSubview(tableView)
         tableView.edgesToSuperview()
@@ -33,18 +37,18 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
         emptyView = EmptyViewController().view
         view.addSubview(emptyView)
         emptyView.edgesToSuperview()
-
+        
         addButton = CircleImageButton(UIImage(named: "handwrite"))
         addButton.addTarget(self, action: #selector(tappedAdd), for: .touchUpInside)
         view.addSubview(addButton)
         addButton.bottomToSuperview(offset: -32)
-        addButton.centerXToSuperview()
+        addButton.centerXToSuperview(offset: -40)
         
-        sortButton = CircleImageButton(nil)
+        sortButton = CircleImageButton(UIImage(named:"time"))
         sortButton.addTarget(self, action: #selector(tappedSort), for: .touchUpInside)
         view.addSubview(sortButton)
-        sortButton.topToSuperview(offset: 32)
-        sortButton.trailingToSuperview(offset: 32)
+        sortButton.bottomToSuperview(offset: -32)
+        sortButton.centerXToSuperview(offset: 40)
         
         setupNavigationBar()
     }
@@ -115,7 +119,12 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     @objc private func tappedSort() {
-        
+        let sortModeIndex = (sortMode.rawValue + 1) % 4
+        if let newSortMode = SortMode(rawValue: sortModeIndex) {
+            sortMode = newSortMode
+            sortButton.setImage(sortImages[sortModeIndex], for: .normal)
+            sortItems(by: sortMode)
+        }
     }
     
     private func animateAddButton() {
@@ -159,5 +168,7 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
                 return thoughtA.lastUpdated > thoughtB.lastUpdated
             }
         }
+        
+        tableView.reloadData()
     }
 }
