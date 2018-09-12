@@ -75,20 +75,7 @@ class EditViewController: UIViewController {
     }
     
     private func animateCloseButton(image: UIImage?) {
-        let animator = UIViewPropertyAnimator(duration: 0.1, curve: .easeInOut) {
-            self.closeButton.transform = self.closeButton.transform.scaledBy(x: 0.9, y: 0.9)
-        }
-        
-        let secondAnimator = UIViewPropertyAnimator(duration: 0.4, dampingRatio: 0.5) {
-            self.closeButton.transform = .identity
-        }
-        
-        animator.addCompletion { _ in
-            self.closeButton.setImage(image, for: .normal)
-            secondAnimator.startAnimation()
-        }
-        
-        animator.startAnimation()
+        closeButton.animateToImage(image)
     }
 }
 

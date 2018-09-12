@@ -114,7 +114,6 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     @objc private func tappedAdd() {
         let editViewController = EditViewController()
-        animateAddButton()
         present(editViewController, animated: true)
     }
     
@@ -122,25 +121,9 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
         let sortModeIndex = (sortMode.rawValue + 1) % 4
         if let newSortMode = SortMode(rawValue: sortModeIndex) {
             sortMode = newSortMode
-            sortButton.setImage(sortImages[sortModeIndex], for: .normal)
+            sortButton.animateToImage(sortImages[sortModeIndex], immediately: true)
             sortItems(by: sortMode)
         }
-    }
-    
-    private func animateAddButton() {
-        let animator = UIViewPropertyAnimator(duration: 0.1, curve: .easeInOut) {
-            self.addButton.transform = self.addButton.transform.scaledBy(x: 0.8, y: 0.8)
-        }
-        
-        let secondAnimator = UIViewPropertyAnimator(duration: 0.4, dampingRatio: 0.5) {
-            self.addButton.transform = .identity
-        }
-        
-        animator.addCompletion { _ in
-            secondAnimator.startAnimation()
-        }
-        
-        animator.startAnimation()
     }
     
     private func checkEmptyState() {
@@ -153,6 +136,8 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
             self.tableView.alpha = 1 - alpha
             self.emptyView.alpha = alpha
         }
+        sortButton.alpha = show ? 0.2 : 1
+        sortButton.isUserInteractionEnabled = !show
     }
     
     private func sortItems(by: SortMode) {
