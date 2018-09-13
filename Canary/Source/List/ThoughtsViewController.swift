@@ -90,6 +90,10 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
             fatalError()
         }
         let date = Date(timeIntervalSince1970: items[indexPath.row].lastUpdated)
+        
+        let aFewSecondsAgo = Date(timeIntervalSinceNow: -3)
+        print(ThoughtDateFormatter().string(from: aFewSecondsAgo))
+        
         cell.lastUpdatedLabel.text = dateFormatter.formattedString(from: date)
         cell.mainLabel.text = items[indexPath.row].content
         return cell
