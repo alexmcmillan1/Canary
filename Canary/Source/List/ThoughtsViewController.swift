@@ -157,6 +157,7 @@ class ThoughtsViewController: UIViewController, UITableViewDataSource, UITableVi
             }
         }
         
+        tableView.reloadRows(at: tableView.indexPathsForVisibleRows ?? [], with: .fade)
         tableView.reloadData()
     }
 }
