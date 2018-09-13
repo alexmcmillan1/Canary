@@ -20,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K6n-NQ-mf6">
-                        <rect key="frame" x="16" y="16" width="288" height="23.5"/>
+                        <rect key="frame" x="16" y="18" width="288" height="23.5"/>
                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
                         <color key="textColor" red="0.082352941176470587" green="0.094117647058823528" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -33,16 +33,16 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OH1-vC-tbt">
-                        <rect key="frame" x="16" y="39.5" width="288" height="19.5"/>
+                        <rect key="frame" x="16" y="43.5" width="288" height="19.5"/>
                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="14"/>
-                        <color key="textColor" red="0.08235294118" green="0.094117647060000004" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="OH1-vC-tbt" firstAttribute="leading" secondItem="K6n-NQ-mf6" secondAttribute="leading" id="3z7-BB-U4x"/>
                     <constraint firstItem="OH1-vC-tbt" firstAttribute="trailing" secondItem="K6n-NQ-mf6" secondAttribute="trailing" id="EOw-3A-VDP"/>
-                    <constraint firstItem="OH1-vC-tbt" firstAttribute="top" secondItem="K6n-NQ-mf6" secondAttribute="bottom" id="kwR-xm-kug"/>
+                    <constraint firstItem="OH1-vC-tbt" firstAttribute="top" secondItem="K6n-NQ-mf6" secondAttribute="bottom" constant="2" id="kwR-xm-kug"/>
                 </constraints>
             </tableViewCellContentView>
             <constraints>
@@ -51,7 +51,7 @@
                 <constraint firstItem="njF-e1-oar" firstAttribute="trailing" secondItem="K6n-NQ-mf6" secondAttribute="trailing" constant="16" id="F18-uN-2Pi"/>
                 <constraint firstItem="pPb-dx-hXo" firstAttribute="bottom" secondItem="njF-e1-oar" secondAttribute="bottom" id="Krd-Gk-ItG"/>
                 <constraint firstItem="K6n-NQ-mf6" firstAttribute="leading" secondItem="njF-e1-oar" secondAttribute="leading" constant="16" id="tnj-ZT-r2M"/>
-                <constraint firstItem="K6n-NQ-mf6" firstAttribute="top" secondItem="njF-e1-oar" secondAttribute="top" constant="16" id="u5K-LG-wgh"/>
+                <constraint firstItem="K6n-NQ-mf6" firstAttribute="top" secondItem="njF-e1-oar" secondAttribute="top" constant="18" id="u5K-LG-wgh"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
