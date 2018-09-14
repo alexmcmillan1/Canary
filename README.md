@@ -1,4 +1,4 @@
-![logo](https://raw.githubusercontent.com/alexmcmillan1/Canary/master/Images/icon_small.png)
+![logo](https://raw.githubusercontent.com/alexmcmillan1/Canary/master/Images/icon_small2.png)
 
 # Canary
 
