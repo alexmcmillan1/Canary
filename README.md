@@ -1,5 +1,3 @@
-![logo](https://raw.githubusercontent.com/alexmcmillan1/Canary/master/Images/icon_small2.png)
-
 # Canary
 
 Stripped-down note-taking for iOS:
